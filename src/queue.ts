@@ -1,13 +1,6 @@
-import {Instance} from './instance';
-import {CreateQueue} from './queue/create-queue';
+import {Instance} from './types/instance';
 
 export class Queue {
-    constructor(private args: {
-        instance: Instance
-    }) {
-    }
-
-    createQueue() {
-
+    constructor(instance: Instance) {
     }
 }

@@ -1,51 +1,70 @@
-export interface Common {
+import * as client from 'request-promise';
+import {RequestPromiseAPI} from 'request-promise';
+import {Instance} from './types/instance';
+import {CommonOptions} from './types/common-options';
+
+export class Common {
+    /**
+     * 请求方式
+     */
+    private method = 'POST';
+
+    /**
+     * 请求地址
+     */
+    private uri: string;
+
+    /**
+     * 请求固定路径
+     */
+    private path: string;
+
+    /**
+     * 请求协议
+     */
+    private protocol: string;
+
     /**
      * 请求客户端
      */
-    httpClient: any;
+    private httpClient: RequestPromiseAPI;
+
+    constructor(private instance: Instance,
+                private options: CommonOptions,
+                private type: string) {
+        options.Region = instance.region;
+        if (instance.extranet) {
+            this.protocol = 'https://';
+            this.uri = `cmq-${type}-${options.Region}.api.qcloud.com`;
+        } else {
+            this.protocol = 'http://';
+            this.uri = `cmq-${type}-${options.Region}.api.tencentyun.com`;
+        }
+        this.path = instance.path;
+        this.httpClient = client.defaults({
+            baseUrl: this.protocol + this.uri,
+            timeout: 2.0
+        });
+    }
 
     /**
-     * 实例配置
+     * 获取请求部分签名参数
      */
-    instance: any;
+    private getSignRequest() {
+        return this.method + this.uri + this.path;
+    }
 
     /**
-     * 具体操作的指令接口名称
+     * 发起请求
+     * @param body
      */
-    Action: string;
+    private req(body: any) {
+        return this.httpClient.post(this.path, {
+            formData: body
+        });
+    }
 
-    /**
-     * 地域参数，用来标识希望操作哪个地域的实例。
-     */
-    Region: string;
-
-    /**
-     * 当前 UNIX 时间戳，可记录发起 API 请求的时间
-     */
-    Timestamp: number;
-
-    /**
-     * 随机正整数，与 Timestamp 联合起来， 用于防止重放攻击
-     */
-    Nonce: number;
-
-    /**
-     * 在 云API密钥 上申请的标识身份的 SecretId
-     */
-    SecretId: string;
-
-    /**
-     * 请求签名，用来验证此次请求的合法性，需要用户根据实际的输入参数计算得出
-     */
-    Signature: string;
-
-    /**
-     * 签名方式，目前支持 HmacSHA256 和 HmacSHA1
-     */
-    SignatureMethod: string;
-
-    /**
-     * 临时证书所用的 Token，需要结合临时密钥一起使用
-     */
-    Token: string;
+    getArgs() {
+        console.log(this.options);
+    }
 }
