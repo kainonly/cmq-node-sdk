@@ -1,15 +1,22 @@
-import {Instance} from './instance';
+import {Instance} from './types/instance';
 import {Queue} from './queue';
 
-export class Cmq {
-    constructor(private instance: Instance) {
+export namespace CMQ {
+    /**
+     * 配置客户端
+     * @param instance 实例配置
+     * @constructor
+     */
+    export function Configure(instance: Instance) {
+        return new Client(instance);
     }
 
-    queue() {
-        return new Queue({
-            instance: this.instance
-        });
+    class Client {
+        constructor(private instance: Instance) {
+        }
+
+        queue() {
+            return new Queue(this.instance);
+        }
     }
 }
-
-
