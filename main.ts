@@ -2,7 +2,6 @@ import {config} from 'dotenv';
 import {CMQ} from './src/cmq';
 
 const env = config().parsed;
-
 const cmq = CMQ.Configure({
   path: '/v2/index.php',
   signatureMethod: 'HmacSHA256',
@@ -12,4 +11,8 @@ const cmq = CMQ.Configure({
   region: 'gz'
 });
 
-cmq.queue().CreateQueue('test');
+cmq.queue().CreateQueue('test').then(data => {
+  console.log(JSON.parse(data));
+}).catch(error => {
+  console.log(error);
+});
