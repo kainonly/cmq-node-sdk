@@ -12,7 +12,7 @@ const cmq = CMQ.Configure({
 });
 
 cmq.queue().CreateQueue('test').then(data => {
-  console.log(JSON.parse(data));
+  console.log(data);
 }).catch(error => {
   console.log(error);
 });
