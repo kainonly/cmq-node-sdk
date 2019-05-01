@@ -1,9 +1,7 @@
-import * as client from 'request-promise';
-import {RequestPromise, RequestPromiseAPI} from 'request-promise';
+import * as request from "request";
+import {createHmac} from 'crypto';
 import {Instance} from './types/instance';
 import {CommonOptions} from './types/common-options';
-import {createHmac} from 'crypto';
-import * as requestPromise from 'request-promise';
 
 export class Common {
   /**
@@ -29,7 +27,6 @@ export class Common {
   /**
    * 请求客户端
    */
-  private httpClient: RequestPromiseAPI;
 
   constructor(private instance: Instance,
               private options: CommonOptions,
@@ -45,10 +42,6 @@ export class Common {
       this.uri = `cmq-${type}-${options.Region}.api.tencentyun.com`;
     }
     this.path = instance.path;
-    this.httpClient = client.defaults({
-      baseUrl: this.protocol + this.uri,
-      timeout: 2.0
-    });
   }
 
   /**
@@ -56,16 +49,6 @@ export class Common {
    */
   private getSignRequest() {
     return this.method + this.uri + this.path;
-  }
-
-  /**
-   * 发起请求
-   * @param body
-   */
-  private req(body: any): client.RequestPromise {
-    return this.httpClient.post(this.path, {
-      formData: body
-    });
   }
 
   /**
@@ -129,15 +112,23 @@ export class Common {
   /**
    * 发起请求
    */
-  result() {
-    this.options.Nonce = parseInt((Math.random() * 10000).toFixed(0));
-    this.options.Timestamp = parseInt((new Date().getTime() / 1000).toFixed(0));
-    const param = this.getSignParams();
-    this.options.Signature = this.factorySignature(param);
+  result(): Promise<any> {
+    this.options.Nonce = parseInt((Math.random() * 10000).toString());
+    this.options.Timestamp = parseInt((new Date().getTime() / 1000).toString());
+    this.options.Signature = this.factorySignature(this.getSignParams());
     const args = this.getArgs();
-    return requestPromise.post(this.protocol + this.uri + this.path, {
-      timeout: 2000,
-      form: args,
+    return new Promise((resolve, reject) => {
+      request.post(this.protocol + this.uri + this.path, {
+        timeout: 2000,
+        form: args
+      }, (error, response, body) => {
+        try {
+          if (error) reject(error);
+          else resolve(JSON.parse(body));
+        } catch (e) {
+          reject(e);
+        }
+      });
     });
   }
 }
