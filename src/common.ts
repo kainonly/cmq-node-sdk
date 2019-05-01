@@ -74,9 +74,7 @@ export class Common {
   private getArgs(): any {
     const args: any = {};
     const vars: any = this.options;
-    const keys = Object.keys(this.options).sort((a, b) =>
-        a.toUpperCase() > b.toUpperCase() ? 1 : -1
-    );
+    const keys = Object.keys(this.options).sort();
     for (const key of keys) {
       if (!vars[key]) {
         continue;
@@ -122,6 +120,7 @@ export class Common {
         method = 'sha256';
         break;
     }
+    console.log();
     return Buffer.from(createHmac(method, this.instance.secretKey)
         .update(param)
         .digest('hex')
@@ -131,14 +130,21 @@ export class Common {
   /**
    * 发起请求
    */
-  result(): RequestPromise {
+  result() {
     this.options.Nonce = parseInt((Math.random() * 10000).toFixed(0));
     this.options.Timestamp = parseInt((new Date().getTime() / 1000).toFixed(0));
     const param = this.getSignParams();
-    this.options.Signature = this.factorySignature(this.getSignParams());
-    return requestPromise.post(this.protocol + this.uri + this.path, {
+    console.log(param);
+    this.options.Signature = this.factorySignature(param);
+    const args = this.getArgs();
+    console.log(args);
+    requestPromise.post(this.protocol + this.uri + this.path, {
       timeout: 2000,
-      form: this.getArgs()
+      form: args
+    }).then(data => {
+      console.log(JSON.parse(data));
+    }).catch(error => {
+      console.log(error);
     });
   }
 }
