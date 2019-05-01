@@ -120,10 +120,9 @@ export class Common {
         method = 'sha256';
         break;
     }
-    console.log();
     return Buffer.from(createHmac(method, this.instance.secretKey)
         .update(param)
-        .digest('hex')
+        .digest()
     ).toString('base64');
   }
 
@@ -134,17 +133,11 @@ export class Common {
     this.options.Nonce = parseInt((Math.random() * 10000).toFixed(0));
     this.options.Timestamp = parseInt((new Date().getTime() / 1000).toFixed(0));
     const param = this.getSignParams();
-    console.log(param);
     this.options.Signature = this.factorySignature(param);
     const args = this.getArgs();
-    console.log(args);
-    requestPromise.post(this.protocol + this.uri + this.path, {
+    return requestPromise.post(this.protocol + this.uri + this.path, {
       timeout: 2000,
-      form: args
-    }).then(data => {
-      console.log(JSON.parse(data));
-    }).catch(error => {
-      console.log(error);
+      form: args,
     });
   }
 }
