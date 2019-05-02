@@ -1,5 +1,6 @@
 import {Instance} from './types/instance';
 import {CreateQueue} from './queue/create-queue';
+import {ListQueue} from "./queue/list-queue";
 
 export class Queue {
     constructor(private instance: Instance) {
@@ -12,7 +13,7 @@ export class Queue {
                 maxMsgSize?: number,
                 msgRetentionSeconds?: number,
                 rewindSeconds?: number) {
-        const action = new CreateQueue(this.instance, {
+        return new CreateQueue(this.instance, {
             Action: 'CreateQueue',
             queueName,
             maxMsgHeapNum,
@@ -21,7 +22,15 @@ export class Queue {
             maxMsgSize,
             msgRetentionSeconds,
             rewindSeconds
-        });
-        return action.result();
+        }).result();
+    }
+
+    ListQueue(searchWord?: string, offset?: number, limit?: number) {
+        return new ListQueue(this.instance, {
+            Action: 'ListQueue',
+            searchWord,
+            offset,
+            limit
+        }).result();
     }
 }
