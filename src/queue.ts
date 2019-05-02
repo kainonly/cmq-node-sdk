@@ -5,6 +5,7 @@ import {GetQueueAttributes} from "./queue/get-queue-attributes";
 import {SetQueueAttributes} from "./queue/set-queue-attributes";
 import {DeleteQueue} from "./queue/delete-queue";
 import {RewindQueue} from "./queue/rewind-queue";
+import {SendMessage} from "./queue/send-message";
 
 export class Queue {
     constructor(private instance: Instance) {
@@ -122,5 +123,21 @@ export class Queue {
             queueName,
             startConsumeTime
         })
+    }
+
+    /**
+     * 发送消息
+     * @param queueName 队列名称
+     * @param msgBody 消息正文
+     * @param delaySeconds 需要延时多久用户才可见该消息
+     * @constructor
+     */
+    SendMessage(queueName: string, msgBody: any, delaySeconds: number) {
+        return new SendMessage(this.instance, {
+            Action: 'SendMessage',
+            queueName,
+            msgBody,
+            delaySeconds
+        });
     }
 }
