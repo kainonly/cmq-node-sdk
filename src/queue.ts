@@ -1,6 +1,7 @@
 import {Instance} from './types/instance';
 import {CreateQueue} from './queue/create-queue';
 import {ListQueue} from "./queue/list-queue";
+import {GetQueueAttributes} from "./queue/get-queue-attributes";
 
 export class Queue {
     constructor(private instance: Instance) {
@@ -32,5 +33,12 @@ export class Queue {
             offset,
             limit
         }).result();
+    }
+
+    GetQueueAttributes(queueName: string) {
+        return new GetQueueAttributes(this.instance, {
+            Action: 'GetQueueAttributes',
+            queueName
+        });
     }
 }
