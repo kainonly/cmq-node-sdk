@@ -42,9 +42,9 @@ export class Queue {
 
     /**
      * 获取队列列表
-     * @param searchWord
-     * @param offset
-     * @param limit
+     * @param searchWord 用于过滤队列列表，后台用模糊匹配的方式来返回符合条件的队列列表
+     * @param offset 分页时本页获取队列列表的起始位置
+     * @param limit 分页时本页获取队列的个数
      * @constructor
      */
     ListQueue(searchWord?: string, offset?: number, limit?: number) {
@@ -58,7 +58,7 @@ export class Queue {
 
     /**
      * 获取队列属性
-     * @param queueName
+     * @param queueName 队列名称
      * @constructor
      */
     GetQueueAttributes(queueName: string) {
@@ -70,13 +70,13 @@ export class Queue {
 
     /**
      * 修改队列属性
-     * @param queueName
-     * @param maxMsgHeapNum
-     * @param pollingWaitSeconds
-     * @param visibilityTimeout
-     * @param maxMsgSize
-     * @param msgRetentionSeconds
-     * @param rewindSeconds
+     * @param queueName 队列名称
+     * @param maxMsgHeapNum 最大堆积消息数
+     * @param pollingWaitSeconds 消息接收长轮询等待时间
+     * @param visibilityTimeout 消息可见性超时
+     * @param maxMsgSize 消息最大长度
+     * @param msgRetentionSeconds 消息保留周期
+     * @param rewindSeconds 队列是否开启回溯消息能力
      * @constructor
      */
     SetQueueAttributes(queueName: string,
@@ -100,7 +100,7 @@ export class Queue {
 
     /**
      * 删除队列
-     * @param queueName
+     * @param queueName 队列名称
      * @constructor
      */
     DeleteQueue(queueName: string) {
@@ -112,8 +112,8 @@ export class Queue {
 
     /**
      * 回溯队列
-     * @param queueName
-     * @param startConsumeTime
+     * @param queueName 队列名称
+     * @param startConsumeTime 生产消息的先后顺序消费该时间戳以后的消息
      * @constructor
      */
     RewindQueue(queueName: string, startConsumeTime: number) {
