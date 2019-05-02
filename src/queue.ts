@@ -3,6 +3,7 @@ import {CreateQueue} from './queue/create-queue';
 import {ListQueue} from "./queue/list-queue";
 import {GetQueueAttributes} from "./queue/get-queue-attributes";
 import {SetQueueAttributes} from "./queue/set-queue-attributes";
+import {DeleteQueue} from "./queue/delete-queue";
 
 export class Queue {
     constructor(private instance: Instance) {
@@ -59,6 +60,13 @@ export class Queue {
             maxMsgSize,
             msgRetentionSeconds,
             rewindSeconds
+        });
+    }
+
+    DeleteQueue(queueName: string) {
+        return new DeleteQueue(this.instance, {
+            Action: 'DeleteQueue',
+            queueName
         });
     }
 }
