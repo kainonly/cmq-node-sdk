@@ -2,6 +2,7 @@ import {Instance} from './types/instance';
 import {CreateQueue} from './queue/create-queue';
 import {ListQueue} from "./queue/list-queue";
 import {GetQueueAttributes} from "./queue/get-queue-attributes";
+import {SetQueueAttributes} from "./queue/set-queue-attributes";
 
 export class Queue {
     constructor(private instance: Instance) {
@@ -39,6 +40,25 @@ export class Queue {
         return new GetQueueAttributes(this.instance, {
             Action: 'GetQueueAttributes',
             queueName
+        });
+    }
+
+    SetQueueAttributes(queueName: string,
+                       maxMsgHeapNum?: number,
+                       pollingWaitSeconds?: number,
+                       visibilityTimeout?: number,
+                       maxMsgSize?: number,
+                       msgRetentionSeconds?: number,
+                       rewindSeconds?: number) {
+        return new SetQueueAttributes(this.instance, {
+            Action: 'SetQueueAttributes',
+            queueName,
+            maxMsgHeapNum,
+            pollingWaitSeconds,
+            visibilityTimeout,
+            maxMsgSize,
+            msgRetentionSeconds,
+            rewindSeconds
         });
     }
 }
