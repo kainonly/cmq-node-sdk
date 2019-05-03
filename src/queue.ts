@@ -6,6 +6,7 @@ import {SetQueueAttributes} from "./queue/set-queue-attributes";
 import {DeleteQueue} from "./queue/delete-queue";
 import {RewindQueue} from "./queue/rewind-queue";
 import {SendMessage} from "./queue/send-message";
+import {BatchSendMessage} from "./queue/batch-send-message";
 
 export class Queue {
     constructor(private instance: Instance) {
@@ -135,6 +136,22 @@ export class Queue {
     SendMessage(queueName: string, msgBody: any, delaySeconds: number) {
         return new SendMessage(this.instance, {
             Action: 'SendMessage',
+            queueName,
+            msgBody,
+            delaySeconds
+        });
+    }
+
+    /**
+     * 批量发送消息
+     * @param queueName
+     * @param msgBody
+     * @param delaySeconds
+     * @constructor
+     */
+    BatchSendMessage(queueName: string, msgBody: any, delaySeconds?: number) {
+        return new BatchSendMessage(this.instance, {
+            Action: 'BatchSendMessage',
             queueName,
             msgBody,
             delaySeconds
