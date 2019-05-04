@@ -8,6 +8,7 @@ import {RewindQueue} from "./queue/rewind-queue";
 import {SendMessage} from "./queue/send-message";
 import {BatchSendMessage} from "./queue/batch-send-message";
 import {ReceiveMessage} from "./queue/receive-message";
+import {BatchReceiveMessage} from "./queue/batch-receive-message";
 
 export class Queue {
     constructor(private instance: Instance) {
@@ -169,6 +170,22 @@ export class Queue {
         return new ReceiveMessage(this.instance, {
             Action: 'ReceiveMessage',
             queueName,
+            pollingWaitSeconds
+        });
+    }
+
+    /**
+     * 批量消费消息
+     * @param queueName 队列名称
+     * @param numOfMsg 本次消费的消息数量
+     * @param pollingWaitSeconds 本次请求的长轮询等待时间
+     * @constructor
+     */
+    BatchReceiveMessage(queueName: string, numOfMsg: number, pollingWaitSeconds?: number) {
+        return new BatchReceiveMessage(this.instance, {
+            Action: 'BatchReceiveMessage',
+            queueName,
+            numOfMsg,
             pollingWaitSeconds
         });
     }
