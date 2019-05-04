@@ -7,6 +7,7 @@ import {DeleteQueue} from "./queue/delete-queue";
 import {RewindQueue} from "./queue/rewind-queue";
 import {SendMessage} from "./queue/send-message";
 import {BatchSendMessage} from "./queue/batch-send-message";
+import {ReceiveMessage} from "./queue/receive-message";
 
 export class Queue {
     constructor(private instance: Instance) {
@@ -144,9 +145,9 @@ export class Queue {
 
     /**
      * 批量发送消息
-     * @param queueName
-     * @param msgBody
-     * @param delaySeconds
+     * @param queueName 队列名称
+     * @param msgBody 消息正文
+     * @param delaySeconds 需要延时多久用户才可见该消息
      * @constructor
      */
     BatchSendMessage(queueName: string, msgBody: any, delaySeconds?: number) {
@@ -155,6 +156,20 @@ export class Queue {
             queueName,
             msgBody,
             delaySeconds
+        });
+    }
+
+    /**
+     * 消费消息
+     * @param queueName 队列名称
+     * @param pollingWaitSeconds 本次请求的长轮询等待时间
+     * @constructor
+     */
+    ReceiveMessage(queueName: string, pollingWaitSeconds?: number) {
+        return new ReceiveMessage(this.instance, {
+            Action: 'ReceiveMessage',
+            queueName,
+            pollingWaitSeconds
         });
     }
 }
