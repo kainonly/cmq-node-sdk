@@ -10,6 +10,7 @@ import {BatchSendMessage} from "./queue/batch-send-message";
 import {ReceiveMessage} from "./queue/receive-message";
 import {BatchReceiveMessage} from "./queue/batch-receive-message";
 import {DeleteMessage} from "./queue/delete-message";
+import {BatchDeleteQueue} from "./queue/batch-delete-queue";
 
 export class Queue {
     constructor(private instance: Instance) {
@@ -202,6 +203,21 @@ export class Queue {
             Action: 'DeleteMessage',
             queueName,
             receiptHandle
-        })
+        });
     }
+
+    /**
+     * 批量删除消息
+     * @param queueName 队列名称
+     * @param receiptHandle 上次消费消息时返回的消息句柄
+     * @constructor
+     */
+    BatchDeleteQueue(queueName: string, receiptHandle: any[]) {
+        return new BatchDeleteQueue(this.instance, {
+            Action: 'BatchDeleteQueue',
+            queueName,
+            receiptHandle
+        });
+    }
+
 }
