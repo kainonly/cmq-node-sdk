@@ -9,6 +9,7 @@ import {SendMessage} from "./queue/send-message";
 import {BatchSendMessage} from "./queue/batch-send-message";
 import {ReceiveMessage} from "./queue/receive-message";
 import {BatchReceiveMessage} from "./queue/batch-receive-message";
+import {DeleteMessage} from "./queue/delete-message";
 
 export class Queue {
     constructor(private instance: Instance) {
@@ -188,5 +189,19 @@ export class Queue {
             numOfMsg,
             pollingWaitSeconds
         });
+    }
+
+    /**
+     * 删除消息
+     * @param queueName 队列名称
+     * @param receiptHandle 上次消费返回唯一的消息句柄，用于删除消息
+     * @constructor
+     */
+    DeleteMessage(queueName: string, receiptHandle: string) {
+        return new DeleteMessage(this.instance, {
+            Action: 'DeleteMessage',
+            queueName,
+            receiptHandle
+        })
     }
 }
