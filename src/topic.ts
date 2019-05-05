@@ -1,5 +1,6 @@
 import {Instance} from "./types/instance";
-import {CreateTopic} from "./queue/create-topic";
+import {CreateTopic} from "./topic/create-topic";
+import {SetTopicAttributes} from "./topic/set-topic-attributes";
 
 export class Topic {
     constructor(private instance: Instance) {
@@ -18,6 +19,20 @@ export class Topic {
             topicName,
             maxMsgSize,
             filterType
+        });
+    }
+
+    /**
+     * 修改主题属性
+     * @param topicName 主题名字
+     * @param maxMsgSize 消息最大长度
+     * @constructor
+     */
+    SetTopicAttributes(topicName: string, maxMsgSize?: number) {
+        return new SetTopicAttributes(this.instance, {
+            Action: 'SetTopicAttributes',
+            topicName,
+            maxMsgSize
         });
     }
 }
