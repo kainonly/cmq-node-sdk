@@ -1,6 +1,7 @@
 import {Instance} from "./types/instance";
 import {CreateTopic} from "./topic/create-topic";
 import {SetTopicAttributes} from "./topic/set-topic-attributes";
+import {ListTopic} from "./topic/list-topic";
 
 export class Topic {
     constructor(private instance: Instance) {
@@ -33,6 +34,22 @@ export class Topic {
             Action: 'SetTopicAttributes',
             topicName,
             maxMsgSize
+        });
+    }
+
+    /**
+     * 获取主题列表
+     * @param searchWord
+     * @param offset
+     * @param limit
+     * @constructor
+     */
+    ListTopic(searchWord?: string, offset?: number, limit?: number) {
+        return new ListTopic(this.instance, {
+            Action: 'ListTopic',
+            searchWord,
+            offset,
+            limit
         });
     }
 }
