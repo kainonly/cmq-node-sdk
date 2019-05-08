@@ -3,6 +3,7 @@ import {CreateTopic} from "./topic/create-topic";
 import {SetTopicAttributes} from "./topic/set-topic-attributes";
 import {ListTopic} from "./topic/list-topic";
 import {GetTopicAttributes} from "./topic/get-topic-attributes";
+import {DeleteTopic} from "./topic/delete-topic";
 
 export class Topic {
     constructor(private instance: Instance) {
@@ -62,6 +63,18 @@ export class Topic {
     GetTopicAttributes(topicName: string) {
         return new GetTopicAttributes(this.instance, {
             Action: 'GetTopicAttributes',
+            topicName
+        });
+    }
+
+    /**
+     * 删除主题
+     * @param topicName 主题名字
+     * @constructor
+     */
+    DeleteTopic(topicName: string) {
+        return new DeleteTopic(this.instance, {
+            Action: 'DeleteTopic',
             topicName
         });
     }
