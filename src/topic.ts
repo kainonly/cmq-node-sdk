@@ -2,6 +2,7 @@ import {Instance} from "./types/instance";
 import {CreateTopic} from "./topic/create-topic";
 import {SetTopicAttributes} from "./topic/set-topic-attributes";
 import {ListTopic} from "./topic/list-topic";
+import {GetTopicAttributes} from "./topic/get-topic-attributes";
 
 export class Topic {
     constructor(private instance: Instance) {
@@ -39,9 +40,9 @@ export class Topic {
 
     /**
      * 获取主题列表
-     * @param searchWord
-     * @param offset
-     * @param limit
+     * @param searchWord 用于过滤主题列表，后台用模糊匹配的方式来返回符合条件的主题列表
+     * @param offset 分页时本页获取主题列表的起始位置
+     * @param limit 分页时本页获取主题的个数
      * @constructor
      */
     ListTopic(searchWord?: string, offset?: number, limit?: number) {
@@ -50,6 +51,18 @@ export class Topic {
             searchWord,
             offset,
             limit
+        });
+    }
+
+    /**
+     * 获取主题属性
+     * @param topicName 主题名字
+     * @constructor
+     */
+    GetTopicAttributes(topicName: string) {
+        return new GetTopicAttributes(this.instance, {
+            Action: 'GetTopicAttributes',
+            topicName
         });
     }
 }
