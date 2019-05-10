@@ -1,9 +1,10 @@
-import {Instance} from "./types/instance";
-import {CreateTopic} from "./topic/create-topic";
-import {SetTopicAttributes} from "./topic/set-topic-attributes";
-import {ListTopic} from "./topic/list-topic";
-import {GetTopicAttributes} from "./topic/get-topic-attributes";
-import {DeleteTopic} from "./topic/delete-topic";
+import {Instance} from './types/instance';
+import {CreateTopic} from './topic/create-topic';
+import {SetTopicAttributes} from './topic/set-topic-attributes';
+import {ListTopic} from './topic/list-topic';
+import {GetTopicAttributes} from './topic/get-topic-attributes';
+import {DeleteTopic} from './topic/delete-topic';
+import {PublishMessage} from './topic/publish-message';
 
 export class Topic {
     constructor(private instance: Instance) {
@@ -76,6 +77,24 @@ export class Topic {
         return new DeleteTopic(this.instance, {
             Action: 'DeleteTopic',
             topicName
+        });
+    }
+
+    /**
+     * 发布消息
+     * @param topicName 主题名字
+     * @param msgBody 消息正文
+     * @param msgTag 消息过滤标签
+     * @param routingKey
+     * @constructor
+     */
+    PublishMessage(topicName: string, msgBody: any, msgTag?: string[], routingKey?: string) {
+        return new PublishMessage(this.instance, {
+            Action: 'PublishMessage',
+            topicName,
+            msgBody,
+            msgTag,
+            routingKey
         });
     }
 }
