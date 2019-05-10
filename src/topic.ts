@@ -5,6 +5,7 @@ import {ListTopic} from './topic/list-topic';
 import {GetTopicAttributes} from './topic/get-topic-attributes';
 import {DeleteTopic} from './topic/delete-topic';
 import {PublishMessage} from './topic/publish-message';
+import {BatchPublishMessage} from './topic/batch-publish-message';
 
 export class Topic {
     constructor(private instance: Instance) {
@@ -85,12 +86,30 @@ export class Topic {
      * @param topicName 主题名字
      * @param msgBody 消息正文
      * @param msgTag 消息过滤标签
-     * @param routingKey
+     * @param routingKey 表示发送消息的路由路径
      * @constructor
      */
     PublishMessage(topicName: string, msgBody: any, msgTag?: string[], routingKey?: string) {
         return new PublishMessage(this.instance, {
             Action: 'PublishMessage',
+            topicName,
+            msgBody,
+            msgTag,
+            routingKey
+        });
+    }
+
+    /**
+     * 批量发布消息
+     * @param topicName 主题名字
+     * @param msgBody 消息正文
+     * @param msgTag 消息过滤标签
+     * @param routingKey 表示发送消息的路由路径
+     * @constructor
+     */
+    BatchPublishMessage(topicName: string, msgBody: any, msgTag?: string[], routingKey?: string) {
+        return new BatchPublishMessage(this.instance, {
+            Action: 'BatchPublishMessage',
             topicName,
             msgBody,
             msgTag,
