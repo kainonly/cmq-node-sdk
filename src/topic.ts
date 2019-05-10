@@ -10,6 +10,7 @@ import {Subscribe} from './topic/subscribe';
 import {ListSubscriptionByTopic} from './topic/list-subscription-by-topic';
 import {SetSubscriptionAttributes} from './topic/set-subscription-attributes';
 import {Unsubscribe} from './topic/unsubscribe';
+import {GetSubscriptionAttributes} from './topic/get-subscription-attributes';
 
 export class Topic {
     constructor(private instance: Instance) {
@@ -215,5 +216,19 @@ export class Topic {
             topicName,
             subscriptionName
         });
+    }
+
+    /**
+     * 获取订阅属性
+     * @param topicName 主题名字
+     * @param subscriptionName 订阅名字
+     * @constructor
+     */
+    GetSubscriptionAttributes(topicName: string, subscriptionName: string) {
+        return new GetSubscriptionAttributes(this.instance, {
+            Action: 'GetSubscriptionAttributes',
+            topicName,
+            subscriptionName
+        })
     }
 }
