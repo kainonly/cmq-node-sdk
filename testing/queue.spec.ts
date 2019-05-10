@@ -3,7 +3,7 @@ import {config} from 'dotenv';
 import {CMQ} from '../../cmq-nodejs-sdk';
 
 const env = config().parsed;
-const cmq = CMQ.Configure({
+const cmq = CMQ.NEW({
     path: '/v2/index.php',
     signatureMethod: 'HmacSHA256',
     extranet: true,
@@ -15,7 +15,9 @@ const cmq = CMQ.Configure({
 describe('Test Queue', () => {
     it('CreateQueue', async () => {
         try {
-            const res = await cmq.queue().CreateQueue('test');
+            const res = await cmq.createQueue({
+                queueName: 'name'
+            });
             ok(res.code === 0, res.message);
         } catch (e) {
             fail(e);

@@ -2,7 +2,7 @@ export interface CommonOptions {
     /**
      * 具体操作的指令接口名称
      */
-    Action: string;
+    Action?: string;
 
     /**
      * 地域参数，用来标识希望操作哪个地域的实例。
