@@ -6,6 +6,7 @@ import {GetTopicAttributes} from './topic/get-topic-attributes';
 import {DeleteTopic} from './topic/delete-topic';
 import {PublishMessage} from './topic/publish-message';
 import {BatchPublishMessage} from './topic/batch-publish-message';
+import {Subscribe} from './topic/subscribe';
 
 export class Topic {
     constructor(private instance: Instance) {
@@ -114,6 +115,41 @@ export class Topic {
             msgBody,
             msgTag,
             routingKey
+        });
+    }
+
+    /**
+     * 创建订阅
+     * @param topicName 主题名字
+     * @param subscriptionName 订阅名字
+     * @param protocol 订阅的协议
+     * @param endpoint 接收投递消息的 endpoint
+     * @param notifyStrategy 向 endpoint 推送消息出现错误时，CMQ 推送服务器的重试策略
+     * @param notifyContentFormat 推送内容的格式
+     * @param filterTag 消息标签
+     * @param bindingKey 订阅接收消息的过滤策略
+     * @constructor
+     */
+    Subscribe(
+        topicName: string,
+        subscriptionName: string,
+        protocol: string,
+        endpoint: string,
+        notifyStrategy?: string,
+        notifyContentFormat?: string,
+        filterTag?: string[],
+        bindingKey?: string[]
+    ) {
+        return new Subscribe(this.instance, {
+            Action: 'Subscribe',
+            topicName,
+            subscriptionName,
+            protocol,
+            endpoint,
+            notifyStrategy,
+            notifyContentFormat,
+            filterTag,
+            bindingKey
         });
     }
 }
