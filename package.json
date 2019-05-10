@@ -2,7 +2,6 @@
   "name": "cmq-nodejs-sdk",
   "version": "1.0.0",
   "scripts": {
-    "start": "ts-node main.ts",
     "build": "gulp"
   },
   "main": "dist/cmq.js",
