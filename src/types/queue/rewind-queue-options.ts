@@ -1,4 +1,4 @@
-import {CommonOptions} from "./common-options";
+import {CommonOptions} from "../common-options";
 
 export interface RewindQueueOptions extends CommonOptions {
     queueName: string;

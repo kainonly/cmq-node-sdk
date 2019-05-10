@@ -1,6 +1,6 @@
-import {CommonOptions} from "./common-options";
+import {CommonOptions} from '../common-options';
 
-export interface SetQueueAttributesOptions extends CommonOptions {
+export interface CreateQueueOptions extends CommonOptions {
     queueName: string;
     maxMsgHeapNum?: number;
     pollingWaitSeconds?: number;
