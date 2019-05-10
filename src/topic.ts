@@ -9,6 +9,7 @@ import {BatchPublishMessage} from './topic/batch-publish-message';
 import {Subscribe} from './topic/subscribe';
 import {ListSubscriptionByTopic} from './topic/list-subscription-by-topic';
 import {SetSubscriptionAttributes} from './topic/set-subscription-attributes';
+import {Unsubscribe} from './topic/unsubscribe';
 
 export class Topic {
     constructor(private instance: Instance) {
@@ -199,6 +200,20 @@ export class Topic {
             notifyContentFormat,
             filterTag,
             bindingKey
+        });
+    }
+
+    /**
+     * 删除订阅
+     * @param topicName 主题名字
+     * @param subscriptionName 订阅名字
+     * @constructor
+     */
+    Unsubscribe(topicName: string, subscriptionName: string) {
+        return new Unsubscribe(this.instance, {
+            Action: 'Unsubscribe',
+            topicName,
+            subscriptionName
         });
     }
 }
