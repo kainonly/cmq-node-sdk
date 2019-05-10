@@ -1,4 +1,4 @@
-import {CommonOptions} from './common-options';
+import {CommonOptions} from '../common-options';
 
 export interface GetSubscriptionAttributesOptions extends CommonOptions {
     topicName: string;

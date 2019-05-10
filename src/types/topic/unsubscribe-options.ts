@@ -1,4 +1,4 @@
-import {CommonOptions} from './common-options';
+import {CommonOptions} from '../common-options';
 
 export interface UnsubscribeOptions extends CommonOptions {
     topicName: string;
