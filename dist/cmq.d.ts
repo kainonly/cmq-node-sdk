@@ -24,6 +24,8 @@ import { SetSubscriptionAttributesOptions } from './types/topic/set-subscription
 import { UnsubscribeOptions } from './types/topic/unsubscribe-options';
 import { GetSubscriptionAttributesOptions } from './types/topic/get-subscription-attributes-options';
 import { ClearSubscriptionFilterTagsOptions } from './types/topic/clear-subscription-filter-tags-options';
+import { CreateQueueResponse } from './types/queue/create-queue-response';
+import { ListQueueResponse } from './types/queue/list-queue-response';
 export declare namespace CMQ {
     /**
      * 配置客户端
@@ -41,12 +43,12 @@ export declare namespace CMQ {
          * 创建队列
          * @param options
          */
-        createQueue(options: CreateQueueOptions): Promise<any>;
+        createQueue(options: CreateQueueOptions): Promise<CreateQueueResponse>;
         /**
          * 获取队列列表
          * @param options
          */
-        listQueue(options: ListQueueOptions): Promise<any>;
+        listQueue(options: ListQueueOptions): Promise<ListQueueResponse>;
         /**
          * 获取队列属性
          * @param options

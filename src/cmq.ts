@@ -26,6 +26,8 @@ import {SetSubscriptionAttributesOptions} from './types/topic/set-subscription-a
 import {UnsubscribeOptions} from './types/topic/unsubscribe-options';
 import {GetSubscriptionAttributesOptions} from './types/topic/get-subscription-attributes-options';
 import {ClearSubscriptionFilterTagsOptions} from './types/topic/clear-subscription-filter-tags-options';
+import {CreateQueueResponse} from './types/queue/create-queue-response';
+import {ListQueueResponse} from './types/queue/list-queue-response';
 
 export namespace CMQ {
     /**
@@ -64,7 +66,7 @@ export namespace CMQ {
          * @param options
          */
         @Service('CreateQueue', 'queue')
-        createQueue(options: CreateQueueOptions): Promise<any> {
+        createQueue(options: CreateQueueOptions): Promise<CreateQueueResponse> {
             return;
         }
 
@@ -73,7 +75,7 @@ export namespace CMQ {
          * @param options
          */
         @Service('ListQueue', 'queue')
-        listQueue(options: ListQueueOptions): Promise<any> {
+        listQueue(options: ListQueueOptions): Promise<ListQueueResponse> {
             return;
         }
 

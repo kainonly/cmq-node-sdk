@@ -23,4 +23,13 @@ describe('Test Queue Operate', () => {
             fail(e);
         }
     });
+
+    it('List Queue', async function () {
+        try {
+            const res = await cmq.listQueue({});
+            ok(res.code === 0, res.message);
+        } catch (e) {
+            fail(e);
+        }
+    });
 });
