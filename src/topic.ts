@@ -8,6 +8,7 @@ import {PublishMessage} from './topic/publish-message';
 import {BatchPublishMessage} from './topic/batch-publish-message';
 import {Subscribe} from './topic/subscribe';
 import {ListSubscriptionByTopic} from './topic/list-subscription-by-topic';
+import {SetSubscriptionAttributes} from './topic/set-subscription-attributes';
 
 export class Topic {
     constructor(private instance: Instance) {
@@ -169,6 +170,35 @@ export class Topic {
             searchWord,
             offset,
             limit,
+        });
+    }
+
+    /**
+     * 修改订阅属性
+     * @param topicName 主题名字
+     * @param subscriptionName 订阅名字
+     * @param notifyStrategy 向 endpoint 推送消息出现错误时，CMQ 推送服务器的重试策略
+     * @param notifyContentFormat 推送内容的格式
+     * @param filterTag 消息标签
+     * @param bindingKey 订阅接收消息的过滤策略
+     * @constructor
+     */
+    SetSubscriptionAttributes(
+        topicName: string,
+        subscriptionName: string,
+        notifyStrategy?: string,
+        notifyContentFormat?: string,
+        filterTag?: string[],
+        bindingKey?: string[]
+    ) {
+        return new SetSubscriptionAttributes(this.instance, {
+            Action: 'SetSubscriptionAttributes',
+            topicName,
+            subscriptionName,
+            notifyStrategy,
+            notifyContentFormat,
+            filterTag,
+            bindingKey
         });
     }
 }
