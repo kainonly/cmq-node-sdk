@@ -7,6 +7,7 @@ import {DeleteTopic} from './topic/delete-topic';
 import {PublishMessage} from './topic/publish-message';
 import {BatchPublishMessage} from './topic/batch-publish-message';
 import {Subscribe} from './topic/subscribe';
+import {ListSubscriptionByTopic} from './topic/list-subscription-by-topic';
 
 export class Topic {
     constructor(private instance: Instance) {
@@ -150,6 +151,24 @@ export class Topic {
             notifyContentFormat,
             filterTag,
             bindingKey
+        });
+    }
+
+    /**
+     * 获取订阅列表
+     * @param topicName 主题名字
+     * @param searchWord 用于过滤订阅列表
+     * @param offset 分页时本页获取订阅列表的起始位置
+     * @param limit 分页时本页获取订阅的个数
+     * @constructor
+     */
+    ListSubscriptionByTopic(topicName: string, searchWord?: string, offset?: number, limit?: number) {
+        return new ListSubscriptionByTopic(this.instance, {
+            Action: 'ListSubscriptionByTopic',
+            topicName,
+            searchWord,
+            offset,
+            limit,
         });
     }
 }
