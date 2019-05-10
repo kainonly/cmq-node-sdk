@@ -231,4 +231,18 @@ export class Topic {
             subscriptionName
         })
     }
+
+    /**
+     * 清空订阅标签
+     * @param topicName 主题名字
+     * @param subscriptionName 订阅名字
+     * @constructor
+     */
+    ClearSubscriptionFilterTags(topicName: string, subscriptionName: string) {
+        return new GetSubscriptionAttributes(this.instance, {
+            Action: 'ClearSubscriptionFilterTags',
+            topicName,
+            subscriptionName
+        })
+    }
 }
