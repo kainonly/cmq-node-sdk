@@ -24,7 +24,7 @@ describe('Test Queue', () => {
         }
     });
 
-    it('List Queue', async function () {
+    it('List Queue', async () => {
         try {
             const res = await cmq.listQueue({});
             ok(res.code === 0, res.message);
@@ -33,11 +33,25 @@ describe('Test Queue', () => {
         }
     });
 
-    it('Get Queue Attributes ', function () {
-
+    it('Get Queue Attributes ', async () => {
+        try {
+            const res = await cmq.getQueueAttributes({
+                queueName: 'test'
+            });
+            ok(res.code === 0, res.message);
+        } catch (e) {
+            fail(e);
+        }
     });
 
-    it('Delete Queue', function () {
-
+    it('Delete Queue', async () => {
+        try {
+            const res = await cmq.deleteQueue({
+                queueName: 'test'
+            });
+            ok(res.code === 0, res.message);
+        } catch (e) {
+            fail(e);
+        }
     });
 });
