@@ -41,11 +41,34 @@ describe('Test Queue Message', () => {
     });
 
     it('Receive Delete Message', async () => {
-
+        try {
+            const res1 = await cmq.receiveMessage({
+                queueName: 'send'
+            });
+            if (res1.code !== 0) fail(res1.message);
+            const res2 = await cmq.deleteMessage({
+                queueName: 'send',
+                receiptHandle: res1.receiptHandle
+            });
+            ok(res2.code === 0, res2.message);
+        } catch (e) {
+            fail(e);
+        }
     });
 
     it('Batch Send Message', async () => {
-
+        try {
+            const res = await cmq.batchSendMessage({
+                queueName: 'send',
+                msgBody: [
+                    {type: 1},
+                    {type: 2}
+                ]
+            });
+            ok(res.code === 0, res.message);
+        } catch (e) {
+            fail(e);
+        }
     });
 
     it('Batch Receive Delete Message', async () => {
