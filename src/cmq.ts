@@ -28,6 +28,29 @@ import {GetSubscriptionAttributesOptions} from './types/topic/get-subscription-a
 import {ClearSubscriptionFilterTagsOptions} from './types/topic/clear-subscription-filter-tags-options';
 import {CreateQueueResponse} from './types/queue/create-queue-response';
 import {ListQueueResponse} from './types/queue/list-queue-response';
+import {GetQueueAttributesResponse} from "./types/queue/get-queue-attributes-response";
+import {SetQueueAttributesResponse} from "./types/queue/set-queue-attributes-response";
+import {DeleteQueueResponse} from "./types/queue/delete-queue-response";
+import {RewindQueueResponse} from "./types/queue/rewind-queue-response";
+import {SendMessageResponse} from "./types/queue/send-message-response";
+import {BatchSendMessageResponse} from "./types/queue/batch-send-message-response";
+import {ReceiveMessageResponse} from "./types/queue/receive-message-response";
+import {BatchReceiveMessageResponse} from "./types/queue/batch-receive-message-response";
+import {DeleteMessageResponse} from "./types/queue/delete-message-response";
+import {BatchDeleteMessageResponse} from "./types/queue/batch-delete-message-response";
+import {CreateTopicResponse} from "./types/topic/create-topic-response";
+import {SetTopicAttributesResponse} from "./types/topic/set-topic-attributes-response";
+import {ListTopicResponse} from "./types/topic/list-topic-response";
+import {GetTopicAttributesResponse} from "./types/topic/get-topic-attributes-response";
+import {DeleteTopicResponse} from "./types/topic/delete-topic-response";
+import {PublishMessageResponse} from "./types/topic/publish-message-response";
+import {BatchPublishMessageResponse} from "./types/topic/batch-publish-message-response";
+import {SubscribeResponse} from "./types/topic/subscribe-response";
+import {ListSubscriptionByTopicResponse} from "./types/topic/list-subscription-by-topic-response";
+import {SetSubscriptionAttributesResponse} from "./types/topic/set-subscription-attributes-response";
+import {UnsubscribeResponse} from "./types/topic/unsubscribe-response";
+import {GetSubscriptionAttributesResponse} from "./types/topic/get-subscription-attributes-response";
+import {ClearSubscriptionFilterTagsResponse} from "./types/topic/clear-subscription-filter-tags-response";
 
 export namespace CMQ {
     /**
@@ -85,7 +108,7 @@ export namespace CMQ {
          * @constructor
          */
         @Service('GetQueueAttributes', 'queue')
-        getQueueAttributes(options: GetQueueAttributesOptions): Promise<any> {
+        getQueueAttributes(options: GetQueueAttributesOptions): Promise<GetQueueAttributesResponse> {
             return;
         }
 
@@ -95,7 +118,7 @@ export namespace CMQ {
          * @constructor
          */
         @Service('SetQueueAttributes', 'queue')
-        setQueueAttributes(options: SetQueueAttributesOptions): Promise<any> {
+        setQueueAttributes(options: SetQueueAttributesOptions): Promise<SetQueueAttributesResponse> {
             return;
         }
 
@@ -105,7 +128,7 @@ export namespace CMQ {
          * @constructor
          */
         @Service('DeleteQueue', 'queue')
-        deleteQueue(options: DeleteQueueOptions): Promise<any> {
+        deleteQueue(options: DeleteQueueOptions): Promise<DeleteQueueResponse> {
             return;
         }
 
@@ -115,7 +138,7 @@ export namespace CMQ {
          * @constructor
          */
         @Service('RewindQueue', 'queue')
-        rewindQueue(options: RewindQueueOptions): Promise<any> {
+        rewindQueue(options: RewindQueueOptions): Promise<RewindQueueResponse> {
             return;
         }
 
@@ -125,7 +148,7 @@ export namespace CMQ {
          * @constructor
          */
         @Service('SendMessage', 'queue')
-        sendMessage(options: SendMessageOptions): Promise<any> {
+        sendMessage(options: SendMessageOptions): Promise<SendMessageResponse> {
             return;
         }
 
@@ -135,7 +158,7 @@ export namespace CMQ {
          * @constructor
          */
         @Service('BatchSendMessage', 'queue')
-        batchSendMessage(options: BatchSendMessageOptions): Promise<any> {
+        batchSendMessage(options: BatchSendMessageOptions): Promise<BatchSendMessageResponse> {
             return;
         }
 
@@ -145,7 +168,7 @@ export namespace CMQ {
          * @constructor
          */
         @Service('ReceiveMessage', 'queue')
-        receiveMessage(options: ReceiveMessageOptions): Promise<any> {
+        receiveMessage(options: ReceiveMessageOptions): Promise<ReceiveMessageResponse> {
             return;
         }
 
@@ -155,7 +178,7 @@ export namespace CMQ {
          * @constructor
          */
         @Service('BatchReceiveMessage', 'queue')
-        batchReceiveMessage(options: BatchReceiveMessageOptions): Promise<any> {
+        batchReceiveMessage(options: BatchReceiveMessageOptions): Promise<BatchReceiveMessageResponse> {
             return;
         }
 
@@ -165,7 +188,7 @@ export namespace CMQ {
          * @constructor
          */
         @Service('DeleteMessage', 'queue')
-        deleteMessage(options: DeleteMessageOptions): Promise<any> {
+        deleteMessage(options: DeleteMessageOptions): Promise<DeleteMessageResponse> {
             return;
         }
 
@@ -175,7 +198,7 @@ export namespace CMQ {
          * @constructor
          */
         @Service('BatchDeleteQueue', 'queue')
-        batchDeleteQueue(options: BatchDeleteMessageOptions): Promise<any> {
+        batchDeleteQueue(options: BatchDeleteMessageOptions): Promise<BatchDeleteMessageResponse> {
             return;
         }
 
@@ -186,7 +209,7 @@ export namespace CMQ {
          * @constructor
          */
         @Service('CreateTopic', 'topic')
-        createTopic(options: CreateTopicOptions): Promise<any> {
+        createTopic(options: CreateTopicOptions): Promise<CreateTopicResponse> {
             return;
         }
 
@@ -196,7 +219,7 @@ export namespace CMQ {
          * @constructor
          */
         @Service('SetTopicAttributes', 'topic')
-        setTopicAttributes(options: SetTopicAttributesOptions): Promise<any> {
+        setTopicAttributes(options: SetTopicAttributesOptions): Promise<SetTopicAttributesResponse> {
             return;
         }
 
@@ -206,7 +229,7 @@ export namespace CMQ {
          * @constructor
          */
         @Service('ListTopic', 'topic')
-        listTopic(options: ListTopicOptions): Promise<any> {
+        listTopic(options: ListTopicOptions): Promise<ListTopicResponse> {
             return;
         }
 
@@ -216,7 +239,7 @@ export namespace CMQ {
          * @constructor
          */
         @Service('GetTopicAttributes', 'topic')
-        getTopicAttributes(options: GetTopicAttributesOptions): Promise<any> {
+        getTopicAttributes(options: GetTopicAttributesOptions): Promise<GetTopicAttributesResponse> {
             return;
         }
 
@@ -226,7 +249,7 @@ export namespace CMQ {
          * @constructor
          */
         @Service('DeleteTopic', 'topic')
-        deleteTopic(options: DeleteTopicOptions): Promise<any> {
+        deleteTopic(options: DeleteTopicOptions): Promise<DeleteTopicResponse> {
             return;
         }
 
@@ -236,7 +259,7 @@ export namespace CMQ {
          * @constructor
          */
         @Service('PublishMessage', 'topic')
-        publishMessage(options: PublishMessageOptions): Promise<any> {
+        publishMessage(options: PublishMessageOptions): Promise<PublishMessageResponse> {
             return;
         }
 
@@ -246,7 +269,7 @@ export namespace CMQ {
          * @constructor
          */
         @Service('BatchPublishMessage', 'topic')
-        batchPublishMessage(options: BatchPublishMessageOptions): Promise<any> {
+        batchPublishMessage(options: BatchPublishMessageOptions): Promise<BatchPublishMessageResponse> {
             return;
         }
 
@@ -256,7 +279,7 @@ export namespace CMQ {
          * @constructor
          */
         @Service('Subscribe', 'topic')
-        subscribe(options: SubscribeOptions): Promise<any> {
+        subscribe(options: SubscribeOptions): Promise<SubscribeResponse> {
             return;
         }
 
@@ -266,7 +289,7 @@ export namespace CMQ {
          * @constructor
          */
         @Service('ListSubscriptionByTopic', 'topic')
-        listSubscriptionByTopic(options: ListSubscriptionByTopicOptions): Promise<any> {
+        listSubscriptionByTopic(options: ListSubscriptionByTopicOptions): Promise<ListSubscriptionByTopicResponse> {
             return;
         }
 
@@ -276,7 +299,7 @@ export namespace CMQ {
          * @constructor
          */
         @Service('SetSubscriptionAttributes', 'topic')
-        setSubscriptionAttributes(options: SetSubscriptionAttributesOptions): Promise<any> {
+        setSubscriptionAttributes(options: SetSubscriptionAttributesOptions): Promise<SetSubscriptionAttributesResponse> {
             return;
         }
 
@@ -286,7 +309,7 @@ export namespace CMQ {
          * @constructor
          */
         @Service('Unsubscribe', 'topic')
-        unsubscribe(options: UnsubscribeOptions): Promise<any> {
+        unsubscribe(options: UnsubscribeOptions): Promise<UnsubscribeResponse> {
             return;
         }
 
@@ -296,7 +319,7 @@ export namespace CMQ {
          * @constructor
          */
         @Service('GetSubscriptionAttributes', 'topic')
-        getSubscriptionAttributes(options: GetSubscriptionAttributesOptions): Promise<any> {
+        getSubscriptionAttributes(options: GetSubscriptionAttributesOptions): Promise<GetSubscriptionAttributesResponse> {
             return;
         }
 
@@ -306,7 +329,7 @@ export namespace CMQ {
          * @constructor
          */
         @Service('ClearSubscriptionFilterTags', 'topic')
-        clearSubscriptionFilterTags(options: ClearSubscriptionFilterTagsOptions): Promise<any> {
+        clearSubscriptionFilterTags(options: ClearSubscriptionFilterTagsOptions): Promise<ClearSubscriptionFilterTagsResponse> {
             return;
         }
     }
