@@ -66,12 +66,14 @@ export namespace CMQ {
      * 定义请求服务
      * @param action 执行名称
      * @param type 类型
+     * @param operate
      * @constructor
      */
-    function Service(action: string, type: string) {
+    function Service(action: string, type: string, operate?: (options: any) => void) {
         return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
             descriptor.value = function (options: CommonOptions) {
                 options.Action = action;
+                if (operate) operate(options);
                 return new Common(this.instance, options, type).result();
             }
         };
@@ -147,7 +149,11 @@ export namespace CMQ {
          * @param options
          * @constructor
          */
-        @Service('SendMessage', 'queue')
+        @Service('SendMessage', 'queue', options => {
+            if (typeof options.msgBody === "object") {
+                options.msgBody = JSON.stringify(options.msgBody);
+            }
+        })
         sendMessage(options: SendMessageOptions): Promise<SendMessageResponse> {
             return;
         }

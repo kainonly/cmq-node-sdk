@@ -22,12 +22,15 @@ var CMQ;
      * 定义请求服务
      * @param action 执行名称
      * @param type 类型
+     * @param operate
      * @constructor
      */
-    function Service(action, type) {
+    function Service(action, type, operate) {
         return function (target, propertyKey, descriptor) {
             descriptor.value = function (options) {
                 options.Action = action;
+                if (operate)
+                    operate(options);
                 return new common_1.Common(this.instance, options, type).result();
             };
         };
@@ -257,7 +260,11 @@ var CMQ;
         Service('RewindQueue', 'queue')
     ], Client.prototype, "rewindQueue", null);
     __decorate([
-        Service('SendMessage', 'queue')
+        Service('SendMessage', 'queue', options => {
+            if (typeof options.msgBody === "object") {
+                options.msgBody = JSON.stringify(options.msgBody);
+            }
+        })
     ], Client.prototype, "sendMessage", null);
     __decorate([
         Service('BatchSendMessage', 'queue')
