@@ -12,20 +12,24 @@ const cmq = CMQ.NEW({
     region: 'gz'
 });
 
-describe('Test Queue Rewind', () => {
-    it('Create Queue', function () {
+describe('Test Topic', () => {
+    it('Create Topic', function () {
 
     });
 
-    it('Send Message', function () {
+    it('Set Topic Attributes', function () {
 
     });
 
-    it('Receive And Delete Message ', function () {
+    it('List Topic', function () {
 
     });
 
-    it('Rewind Queue', function () {
+    it('Get Topic Attributes', function () {
+
+    });
+
+    it('Delete Topic', function () {
 
     });
 });

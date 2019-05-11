@@ -12,7 +12,7 @@ const cmq = CMQ.NEW({
     region: 'gz'
 });
 
-describe('Test Queue', () => {
+describe('Test Queue Message', () => {
     it('Create Queue ', function () {
 
     });
