@@ -13,51 +13,51 @@ const cmq = CMQ.NEW({
 });
 
 describe('Test Topic Message', () => {
-    it('Create Topic ', function () {
+    it('Create Topic ', async () => {
 
     });
 
-    it('Subscribe', function () {
+    it('Subscribe', async () => {
 
     });
 
-    it('Tag Subscribe', function () {
+    it('Tag Subscribe', async () => {
 
     });
 
-    it('Publish Message', function () {
+    it('Publish Message', async () => {
 
     });
 
-    it('Tag Publish Message', function () {
+    it('Tag Publish Message', async () => {
 
     });
 
-    it('Batch Publish Message', function () {
+    it('Batch Publish Message', async () => {
 
     });
 
-    it('Tag Batch Publish Message', function () {
+    it('Tag Batch Publish Message', async () => {
 
     });
 
-    it('Create Topic Router Type', function () {
+    it('Create Topic Router Type', async () => {
 
     });
 
-    it('Subscribe Router', function () {
+    it('Subscribe Router', async () => {
 
     });
 
-    it('Subscribe RouterKey', function () {
+    it('Subscribe RouterKey', async () => {
 
     });
 
-    it('Publish Message Router', function () {
+    it('Publish Message Router', async () => {
 
     });
 
-    it('Publish Message RouterKey ', function () {
+    it('Publish Message RouterKey ', async () => {
 
     });
 });
