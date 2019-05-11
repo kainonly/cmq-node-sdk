@@ -12,7 +12,7 @@ const cmq = CMQ.NEW({
     region: 'gz'
 });
 
-describe('Test Queue Operate', () => {
+describe('Test Queue', () => {
     it('Create Queue', async () => {
         try {
             const res = await cmq.createQueue({
@@ -31,5 +31,13 @@ describe('Test Queue Operate', () => {
         } catch (e) {
             fail(e);
         }
+    });
+
+    it('Get Queue Attributes ', function () {
+
+    });
+
+    it('Delete Queue', function () {
+
     });
 });
