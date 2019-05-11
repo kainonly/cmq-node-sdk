@@ -13,23 +13,23 @@ const cmq = CMQ.NEW({
 });
 
 describe('Test Queue Message', () => {
-    it('Create Queue ', function () {
+    it('Create Queue ', async () => {
 
     });
 
-    it('Send Message', function () {
+    it('Send Message', async () => {
 
     });
 
-    it('Receive Delete Message', function () {
+    it('Receive Delete Message', async () => {
 
     });
 
-    it('Batch Send Message', function () {
+    it('Batch Send Message', async () => {
 
     });
 
-    it('Batch Receive Delete Message', function () {
+    it('Batch Receive Delete Message', async () => {
 
     });
 });

@@ -13,19 +13,19 @@ const cmq = CMQ.NEW({
 });
 
 describe('Test Queue Rewind', () => {
-    it('Create Queue', function () {
+    it('Create Queue', async () => {
 
     });
 
-    it('Send Message', function () {
+    it('Send Message', async () => {
 
     });
 
-    it('Receive And Delete Message ', function () {
+    it('Receive And Delete Message ', async () => {
 
     });
 
-    it('Rewind Queue', function () {
+    it('Rewind Queue', async () => {
 
     });
 });

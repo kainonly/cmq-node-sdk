@@ -13,23 +13,23 @@ const cmq = CMQ.NEW({
 });
 
 describe('Test Topic', () => {
-    it('Create Topic', function () {
+    it('Create Topic', async () => {
 
     });
 
-    it('Set Topic Attributes', function () {
+    it('Set Topic Attributes', async () => {
 
     });
 
-    it('List Topic', function () {
+    it('List Topic', async () => {
 
     });
 
-    it('Get Topic Attributes', function () {
+    it('Get Topic Attributes', async () => {
 
     });
 
-    it('Delete Topic', function () {
+    it('Delete Topic', async () => {
 
     });
 });
