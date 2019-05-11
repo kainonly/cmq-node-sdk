@@ -163,7 +163,11 @@ export namespace CMQ {
          * @param options
          * @constructor
          */
-        @Service('BatchSendMessage', 'queue')
+        @Service('BatchSendMessage', 'queue', options => {
+            if (typeof options.msgBody === "object") {
+                options.msgBody = JSON.stringify(options.msgBody);
+            }
+        })
         batchSendMessage(options: BatchSendMessageOptions): Promise<BatchSendMessageResponse> {
             return;
         }

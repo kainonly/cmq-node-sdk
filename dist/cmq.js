@@ -267,7 +267,11 @@ var CMQ;
         })
     ], Client.prototype, "sendMessage", null);
     __decorate([
-        Service('BatchSendMessage', 'queue')
+        Service('BatchSendMessage', 'queue', options => {
+            if (typeof options.msgBody === "object") {
+                options.msgBody = JSON.stringify(options.msgBody);
+            }
+        })
     ], Client.prototype, "batchSendMessage", null);
     __decorate([
         Service('ReceiveMessage', 'queue')
