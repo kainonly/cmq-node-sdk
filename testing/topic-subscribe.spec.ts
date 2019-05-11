@@ -12,20 +12,32 @@ const cmq = CMQ.NEW({
     region: 'gz'
 });
 
-describe('Test Queue Rewind', () => {
-    it('Create Queue', function () {
+describe('Test Topic Subscribe', () => {
+    it('Create Topic', () => {
 
     });
 
-    it('Send Message', function () {
+    it('Subscribe', () => {
 
     });
 
-    it('Receive And Delete Message ', function () {
+    it('List Subscription By Topic', () => {
 
     });
 
-    it('Rewind Queue', function () {
+    it('Set Subscription Attributes', () => {
+
+    });
+
+    it('Unsubscribe', () => {
+
+    });
+
+    it('Get Subscription Attributes', () => {
+
+    });
+
+    it('Clear Subscription Filter Tags', () => {
 
     });
 });
