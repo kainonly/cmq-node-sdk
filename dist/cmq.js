@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("./common");
+const util_1 = require("util");
 var CMQ;
 (function (CMQ) {
     /**
@@ -133,7 +134,7 @@ var CMQ;
          * @param options
          * @constructor
          */
-        batchDeleteQueue(options) {
+        batchDeleteMessage(options) {
             return;
         }
         /**
@@ -268,9 +269,7 @@ var CMQ;
     ], Client.prototype, "sendMessage", null);
     __decorate([
         Service('BatchSendMessage', 'queue', options => {
-            if (typeof options.msgBody === "object") {
-                options.msgBody = JSON.stringify(options.msgBody);
-            }
+            options.msgBody.map((v) => util_1.isObject(v) ? JSON.stringify(v) : v);
         })
     ], Client.prototype, "batchSendMessage", null);
     __decorate([
@@ -283,8 +282,8 @@ var CMQ;
         Service('DeleteMessage', 'queue')
     ], Client.prototype, "deleteMessage", null);
     __decorate([
-        Service('BatchDeleteQueue', 'queue')
-    ], Client.prototype, "batchDeleteQueue", null);
+        Service('BatchDeleteMessage', 'queue')
+    ], Client.prototype, "batchDeleteMessage", null);
     __decorate([
         Service('CreateTopic', 'topic')
     ], Client.prototype, "createTopic", null);
