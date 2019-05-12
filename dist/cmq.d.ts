@@ -131,7 +131,7 @@ export declare namespace CMQ {
          * @param options
          * @constructor
          */
-        batchDeleteQueue(options: BatchDeleteMessageOptions): Promise<BatchDeleteMessageResponse>;
+        batchDeleteMessage(options: BatchDeleteMessageOptions): Promise<BatchDeleteMessageResponse>;
         /**
          * 创建主题
          * @param options

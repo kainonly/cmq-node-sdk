@@ -51,6 +51,7 @@ import {SetSubscriptionAttributesResponse} from "./types/topic/set-subscription-
 import {UnsubscribeResponse} from "./types/topic/unsubscribe-response";
 import {GetSubscriptionAttributesResponse} from "./types/topic/get-subscription-attributes-response";
 import {ClearSubscriptionFilterTagsResponse} from "./types/topic/clear-subscription-filter-tags-response";
+import {isObject, isString} from "util";
 
 export namespace CMQ {
     /**
@@ -150,7 +151,7 @@ export namespace CMQ {
          * @constructor
          */
         @Service('SendMessage', 'queue', options => {
-            if (typeof options.msgBody === "object") {
+            if (isObject(options.msgBody)) {
                 options.msgBody = JSON.stringify(options.msgBody);
             }
         })
@@ -164,9 +165,9 @@ export namespace CMQ {
          * @constructor
          */
         @Service('BatchSendMessage', 'queue', options => {
-            if (typeof options.msgBody === "object") {
-                options.msgBody = JSON.stringify(options.msgBody);
-            }
+            options.msgBody = options.msgBody.map((v: any) =>
+                isObject(v) ? JSON.stringify(v) : v
+            );
         })
         batchSendMessage(options: BatchSendMessageOptions): Promise<BatchSendMessageResponse> {
             return;
@@ -207,8 +208,8 @@ export namespace CMQ {
          * @param options
          * @constructor
          */
-        @Service('BatchDeleteQueue', 'queue')
-        batchDeleteQueue(options: BatchDeleteMessageOptions): Promise<BatchDeleteMessageResponse> {
+        @Service('BatchDeleteMessage', 'queue')
+        batchDeleteMessage(options: BatchDeleteMessageOptions): Promise<BatchDeleteMessageResponse> {
             return;
         }
 

@@ -9,6 +9,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const request = __importStar(require("request"));
 const crypto_1 = require("crypto");
+const util_1 = require("util");
 class Common {
     /**
      * 请求客户端
@@ -51,7 +52,7 @@ class Common {
             if (!vars[key]) {
                 continue;
             }
-            if (typeof args[key] === 'object') {
+            if (util_1.isArray(args[key])) {
                 for (const k in args[key]) {
                     if (args[key].hasOwnProperty(k)) {
                         args[key + '.' + k] = args[key][k];
