@@ -1,9 +1,10 @@
 {
-  "name": "cmq-nodejs-sdk",
-  "version": "1.0.0",
+  "name": "cmq-sdk",
+  "version": "1.0.1",
   "scripts": {
     "start": "docsify serve docs",
-    "build": "gulp"
+    "build": "gulp",
+    "release": "npm run build && npm publish"
   },
   "main": "dist/cmq.js",
   "dependencies": {
