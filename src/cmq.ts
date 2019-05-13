@@ -198,7 +198,7 @@ export namespace CMQ {
          * @param options
          * @constructor
          */
-        @Service('DeleteMessage', 'queue')
+        @Service('DeleteMessage', 'queue',)
         deleteMessage(options: DeleteMessageOptions): Promise<DeleteMessageResponse> {
             return;
         }

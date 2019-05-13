@@ -1,8 +1,8 @@
-import * as request from "request";
+import * as request from 'request';
 import {createHmac} from 'crypto';
 import {Instance} from './types/instance';
 import {CommonOptions} from './types/common-options';
-import {isArray} from "util";
+import {isArray} from 'util';
 
 export class Common {
     /**
@@ -66,15 +66,13 @@ export class Common {
             if (isArray(vars[key])) {
                 for (const k in vars[key]) {
                     if (vars[key].hasOwnProperty(k)) {
-                        vars[key + '.' + k] = vars[key][k];
+                        args[key + '.' + k] = vars[key][k];
                     }
                 }
-                delete vars[key];
             } else {
                 args[key] = vars[key];
             }
         }
-
         return args;
     }
 
@@ -116,9 +114,9 @@ export class Common {
     result(): Promise<any> {
         this.options.Nonce = parseInt((Math.random() * 10000).toString());
         this.options.Timestamp = parseInt((new Date().getTime() / 1000).toString());
-        this.options.Signature = this.factorySignature(this.getSignParams());
+        const params = this.getSignParams();
+        this.options.Signature = this.factorySignature(params);
         const args = this.getArgs();
-        console.log(args);
         return new Promise((resolve, reject) => {
             request.post(this.protocol + this.uri + this.path, {
                 timeout: 2000,
