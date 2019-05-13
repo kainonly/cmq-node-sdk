@@ -28,30 +28,30 @@ import {GetSubscriptionAttributesOptions} from './types/topic/get-subscription-a
 import {ClearSubscriptionFilterTagsOptions} from './types/topic/clear-subscription-filter-tags-options';
 import {CreateQueueResponse} from './types/queue/create-queue-response';
 import {ListQueueResponse} from './types/queue/list-queue-response';
-import {GetQueueAttributesResponse} from "./types/queue/get-queue-attributes-response";
-import {SetQueueAttributesResponse} from "./types/queue/set-queue-attributes-response";
-import {DeleteQueueResponse} from "./types/queue/delete-queue-response";
-import {RewindQueueResponse} from "./types/queue/rewind-queue-response";
-import {SendMessageResponse} from "./types/queue/send-message-response";
-import {BatchSendMessageResponse} from "./types/queue/batch-send-message-response";
-import {ReceiveMessageResponse} from "./types/queue/receive-message-response";
-import {BatchReceiveMessageResponse} from "./types/queue/batch-receive-message-response";
-import {DeleteMessageResponse} from "./types/queue/delete-message-response";
-import {BatchDeleteMessageResponse} from "./types/queue/batch-delete-message-response";
-import {CreateTopicResponse} from "./types/topic/create-topic-response";
-import {SetTopicAttributesResponse} from "./types/topic/set-topic-attributes-response";
-import {ListTopicResponse} from "./types/topic/list-topic-response";
-import {GetTopicAttributesResponse} from "./types/topic/get-topic-attributes-response";
-import {DeleteTopicResponse} from "./types/topic/delete-topic-response";
-import {PublishMessageResponse} from "./types/topic/publish-message-response";
-import {BatchPublishMessageResponse} from "./types/topic/batch-publish-message-response";
-import {SubscribeResponse} from "./types/topic/subscribe-response";
-import {ListSubscriptionByTopicResponse} from "./types/topic/list-subscription-by-topic-response";
-import {SetSubscriptionAttributesResponse} from "./types/topic/set-subscription-attributes-response";
-import {UnsubscribeResponse} from "./types/topic/unsubscribe-response";
-import {GetSubscriptionAttributesResponse} from "./types/topic/get-subscription-attributes-response";
-import {ClearSubscriptionFilterTagsResponse} from "./types/topic/clear-subscription-filter-tags-response";
-import {isObject, isString} from "util";
+import {GetQueueAttributesResponse} from './types/queue/get-queue-attributes-response';
+import {SetQueueAttributesResponse} from './types/queue/set-queue-attributes-response';
+import {DeleteQueueResponse} from './types/queue/delete-queue-response';
+import {RewindQueueResponse} from './types/queue/rewind-queue-response';
+import {SendMessageResponse} from './types/queue/send-message-response';
+import {BatchSendMessageResponse} from './types/queue/batch-send-message-response';
+import {ReceiveMessageResponse} from './types/queue/receive-message-response';
+import {BatchReceiveMessageResponse} from './types/queue/batch-receive-message-response';
+import {DeleteMessageResponse} from './types/queue/delete-message-response';
+import {BatchDeleteMessageResponse} from './types/queue/batch-delete-message-response';
+import {CreateTopicResponse} from './types/topic/create-topic-response';
+import {SetTopicAttributesResponse} from './types/topic/set-topic-attributes-response';
+import {ListTopicResponse} from './types/topic/list-topic-response';
+import {GetTopicAttributesResponse} from './types/topic/get-topic-attributes-response';
+import {DeleteTopicResponse} from './types/topic/delete-topic-response';
+import {PublishMessageResponse} from './types/topic/publish-message-response';
+import {BatchPublishMessageResponse} from './types/topic/batch-publish-message-response';
+import {SubscribeResponse} from './types/topic/subscribe-response';
+import {ListSubscriptionByTopicResponse} from './types/topic/list-subscription-by-topic-response';
+import {SetSubscriptionAttributesResponse} from './types/topic/set-subscription-attributes-response';
+import {UnsubscribeResponse} from './types/topic/unsubscribe-response';
+import {GetSubscriptionAttributesResponse} from './types/topic/get-subscription-attributes-response';
+import {ClearSubscriptionFilterTagsResponse} from './types/topic/clear-subscription-filter-tags-response';
+import {isObject, isString} from 'util';
 
 export namespace CMQ {
     /**
@@ -269,7 +269,11 @@ export namespace CMQ {
          * @param options
          * @constructor
          */
-        @Service('PublishMessage', 'topic')
+        @Service('PublishMessage', 'topic', options => {
+            if (isObject(options.msgBody)) {
+                options.msgBody = JSON.stringify(options.msgBody);
+            }
+        })
         publishMessage(options: PublishMessageOptions): Promise<PublishMessageResponse> {
             return;
         }
@@ -279,7 +283,11 @@ export namespace CMQ {
          * @param options
          * @constructor
          */
-        @Service('BatchPublishMessage', 'topic')
+        @Service('BatchPublishMessage', 'topic', options => {
+            options.msgBody = options.msgBody.map((v: any) =>
+                isObject(v) ? JSON.stringify(v) : v
+            );
+        })
         batchPublishMessage(options: BatchPublishMessageOptions): Promise<BatchPublishMessageResponse> {
             return;
         }

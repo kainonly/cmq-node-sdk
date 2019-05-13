@@ -300,10 +300,16 @@ var CMQ;
         Service('DeleteTopic', 'topic')
     ], Client.prototype, "deleteTopic", null);
     __decorate([
-        Service('PublishMessage', 'topic')
+        Service('PublishMessage', 'topic', options => {
+            if (util_1.isObject(options.msgBody)) {
+                options.msgBody = JSON.stringify(options.msgBody);
+            }
+        })
     ], Client.prototype, "publishMessage", null);
     __decorate([
-        Service('BatchPublishMessage', 'topic')
+        Service('BatchPublishMessage', 'topic', options => {
+            options.msgBody = options.msgBody.map((v) => util_1.isObject(v) ? JSON.stringify(v) : v);
+        })
     ], Client.prototype, "batchPublishMessage", null);
     __decorate([
         Service('Subscribe', 'topic')
