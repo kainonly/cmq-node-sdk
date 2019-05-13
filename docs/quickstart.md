@@ -3,13 +3,13 @@
 ##### 安装
 
 ```shell
-npm install cmq-nodejs-sdk --save
+npm install cmq-sdk --save
 ```
 
 ##### 创建客户端
 
 ```typescript
-import {CMQ} from 'cmq-nodejs-sdk';
+import {CMQ} from 'cmq-sdk';
 
 const cmq = CMQ.NEW({
     path: '/v2/index.php',
