@@ -9,6 +9,7 @@ npm install cmq-sdk --save
 ##### 创建客户端
 
 ```typescript
+// JS : const {CMQ} = require('cmq-sdk');
 import {CMQ} from 'cmq-sdk';
 
 const cmq = CMQ.NEW({

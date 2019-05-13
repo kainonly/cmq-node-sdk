@@ -1,4 +1,4 @@
-# CMQ NODE SDK
+# CMQ NODEJS SDK
 
 CMQ 消息队列 NODEJS SDK，[CMQ 接口文档详情](https://cloud.tencent.com/document/api/406/5852)
 
