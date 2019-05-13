@@ -52,10 +52,10 @@ class Common {
             if (!vars[key]) {
                 continue;
             }
-            if (util_1.isArray(args[key])) {
-                for (const k in args[key]) {
-                    if (args[key].hasOwnProperty(k)) {
-                        args[key + '.' + k] = args[key][k];
+            if (util_1.isArray(vars[key])) {
+                for (const k in vars[key]) {
+                    if (vars[key].hasOwnProperty(k)) {
+                        args[key + '.' + k] = vars[key][k];
                     }
                 }
             }
@@ -101,7 +101,8 @@ class Common {
     result() {
         this.options.Nonce = parseInt((Math.random() * 10000).toString());
         this.options.Timestamp = parseInt((new Date().getTime() / 1000).toString());
-        this.options.Signature = this.factorySignature(this.getSignParams());
+        const params = this.getSignParams();
+        this.options.Signature = this.factorySignature(params);
         const args = this.getArgs();
         return new Promise((resolve, reject) => {
             request.post(this.protocol + this.uri + this.path, {
