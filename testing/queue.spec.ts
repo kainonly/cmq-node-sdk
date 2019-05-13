@@ -44,6 +44,18 @@ describe('Test Queue', () => {
         }
     });
 
+    it('Set Queue Attributes', async () => {
+        try {
+            const res = await cmq.setQueueAttributes({
+                queueName: 'test',
+                maxMsgHeapNum: 5000000
+            });
+            ok(res.code === 0, res.message);
+        } catch (e) {
+            fail(e);
+        }
+    });
+
     it('Delete Queue', async () => {
         try {
             const res = await cmq.deleteQueue({
