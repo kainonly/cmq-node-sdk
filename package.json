@@ -1,6 +1,9 @@
 {
   "name": "cmq-sdk",
-  "version": "1.0.3",
+  "version": "1.0.4",
+  "engines": {
+    "node": ">= 8.0.0"
+  },
   "scripts": {
     "start": "docsify serve docs",
     "build": "gulp",
