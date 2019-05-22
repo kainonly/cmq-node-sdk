@@ -8,13 +8,13 @@
     "start": "docsify serve docs",
     "build": "gulp",
     "release": "npm run build && npm publish",
-    "test:queue": "mocha --require ts-node/register --ui bdd testing/queue.spec.ts",
-    "test:queue-message": "mocha --require ts-node/register --ui bdd testing/queue-message.spec.ts",
-    "test:queue-rewind": "mocha --require ts-node/register --ui bdd testing/queue-rewind.spec.ts",
-    "test:topic": "mocha --require ts-node/register --ui bdd testing/topic.spec.ts",
-    "test:topic-message": "mocha --require ts-node/register --ui bdd testing/topic-message.spec.ts",
-    "test:topic-subscribe": "mocha --require ts-node/register --ui bdd testing/topic-subscribe.spec.ts",
-    "test:clear": "mocha --require ts-node/register --ui bdd testing/clear.spec.ts"
+    "test:queue": "mocha --require ts-node/register --ui bdd --reporter spec testing/queue.spec.ts",
+    "test:queue-message": "mocha --require ts-node/register --ui bdd --reporter spec testing/queue-message.spec.ts",
+    "test:queue-rewind": "mocha --require ts-node/register --ui bdd --reporter spec testing/queue-rewind.spec.ts",
+    "test:topic": "mocha --require ts-node/register --ui bdd --reporter spec testing/topic.spec.ts",
+    "test:topic-message": "mocha --require ts-node/register --ui bdd --reporter spec testing/topic-message.spec.ts",
+    "test:topic-subscribe": "mocha --require ts-node/register --ui bdd --reporter spec testing/topic-subscribe.spec.ts",
+    "test:clear": "mocha --require ts-node/register --ui bdd --reporter spec testing/clear.spec.ts"
   },
   "main": "dist/cmq.js",
   "keywords": [
