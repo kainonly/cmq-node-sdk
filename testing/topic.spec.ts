@@ -12,11 +12,34 @@ const cmq = CMQ.NEW({
     region: 'gz'
 });
 
-describe('Test Topic', () => {
-    it('Create Topic', async () => {
+describe('Topic', () => {
+    it('Create Test Topic', async () => {
         try {
             const res = await cmq.createTopic({
-                topicName: 'test-topic'
+                topicName: 'Test'
+            });
+            ok(res.code === 0, res.message);
+        } catch (e) {
+            fail(e);
+        }
+    });
+
+    it('Create Beta Topic ', async () => {
+        try {
+            const res = await cmq.createTopic({
+                topicName: 'Beta'
+            });
+            ok(res.code === 0, res.message);
+        } catch (e) {
+            fail(e);
+        }
+    });
+
+    it('Create BetaRouter Topic', async () => {
+        try {
+            const res = await cmq.createTopic({
+                topicName: 'BetaRouter',
+                filterType: 2
             });
             ok(res.code === 0, res.message);
         } catch (e) {
@@ -27,7 +50,7 @@ describe('Test Topic', () => {
     it('Set Topic Attributes', async () => {
         try {
             const res = await cmq.setTopicAttributes({
-                topicName: 'test-topic',
+                topicName: 'Test',
                 maxMsgSize: 131072
             });
             ok(res.code === 0, res.message);
@@ -48,7 +71,7 @@ describe('Test Topic', () => {
     it('Get Topic Attributes', async () => {
         try {
             const res = await cmq.getTopicAttributes({
-                topicName: 'test-topic'
+                topicName: 'Test'
             });
             ok(res.code === 0, res.message);
         } catch (e) {
@@ -59,7 +82,7 @@ describe('Test Topic', () => {
     it('Delete Topic', async () => {
         try {
             const res = await cmq.deleteTopic({
-                topicName: 'test-topic'
+                topicName: 'Test'
             });
             ok(res.code === 0, res.message);
         } catch (e) {

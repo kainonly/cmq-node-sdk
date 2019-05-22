@@ -12,24 +12,11 @@ const cmq = CMQ.NEW({
     region: 'gz'
 });
 
-describe('Test Queue Rewind', () => {
-    it('Create Queue', async () => {
-        try {
-            const res = await cmq.createQueue({
-                queueName: 'beta',
-                maxMsgHeapNum: 1000000,
-                rewindSeconds: 3600
-            });
-            ok(res.code === 0, res.message);
-        } catch (e) {
-            fail(e);
-        }
-    });
-
+describe('Queue Rewind', () => {
     it('Send Message', async () => {
         try {
             const res = await cmq.sendMessage({
-                queueName: 'beta',
+                queueName: 'RewindTest',
                 msgBody: {
                     name: 'kain'
                 }
@@ -43,11 +30,11 @@ describe('Test Queue Rewind', () => {
     it('Receive And Delete Message ', async () => {
         try {
             const res1 = await cmq.receiveMessage({
-                queueName: 'beta'
+                queueName: 'RewindTest'
             });
             if (res1.code !== 0) fail(res1.message);
             const res2 = await cmq.deleteMessage({
-                queueName: 'beta',
+                queueName: 'RewindTest',
                 receiptHandle: res1.receiptHandle
             });
             ok(res2.code === 0, res2.message);
@@ -60,7 +47,7 @@ describe('Test Queue Rewind', () => {
         try {
             const time = parseInt((new Date().getTime() / 1000).toString());
             const res = await cmq.rewindQueue({
-                queueName: 'beta',
+                queueName: 'RewindTest',
                 startConsumeTime: time - 1800
             });
             ok(res.code === 0, res.message);

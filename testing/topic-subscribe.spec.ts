@@ -12,11 +12,11 @@ const cmq = CMQ.NEW({
     region: 'gz'
 });
 
-describe('Test Topic Subscribe', () => {
-    it('Create Topic', async () => {
+describe('Topic Subscribe', () => {
+    it('Create TestSubscribe Topic', async () => {
         try {
             const res = await cmq.createTopic({
-                topicName: 'sub-topic'
+                topicName: 'TestSubscribe'
             });
             ok(res.code === 0, res.message);
         } catch (e) {
@@ -27,8 +27,8 @@ describe('Test Topic Subscribe', () => {
     it('Subscribe', async () => {
         try {
             const res = await cmq.subscribe({
-                topicName: 'sub-topic',
-                subscriptionName: 'test',
+                topicName: 'TestSubscribe',
+                subscriptionName: 'Test',
                 protocol: 'queue',
                 endpoint: 'normal',
                 filterTag: ['mytag']
@@ -42,7 +42,7 @@ describe('Test Topic Subscribe', () => {
     it('List Subscription By Topic', async () => {
         try {
             const res = await cmq.listSubscriptionByTopic({
-                topicName: 'sub-topic'
+                topicName: 'TestSubscribe'
             });
             ok(res.code === 0, res.message);
         } catch (e) {
@@ -53,21 +53,9 @@ describe('Test Topic Subscribe', () => {
     it('Set Subscription Attributes', async () => {
         try {
             const res = await cmq.setSubscriptionAttributes({
-                topicName: 'sub-topic',
-                subscriptionName: 'test',
+                topicName: 'TestSubscribe',
+                subscriptionName: 'Test',
                 notifyStrategy: 'BACKOFF_RETRY'
-            });
-            ok(res.code === 0, res.message);
-        } catch (e) {
-            fail(e);
-        }
-    });
-
-    it('Unsubscribe', async () => {
-        try {
-            const res = await cmq.unsubscribe({
-                topicName: 'sub-topic',
-                subscriptionName: 'test'
             });
             ok(res.code === 0, res.message);
         } catch (e) {
@@ -78,8 +66,8 @@ describe('Test Topic Subscribe', () => {
     it('Get Subscription Attributes', async () => {
         try {
             const res = await cmq.getSubscriptionAttributes({
-                topicName: 'sub-topic',
-                subscriptionName: 'test'
+                topicName: 'TestSubscribe',
+                subscriptionName: 'Test'
             });
             ok(res.code === 0, res.message);
         } catch (e) {
@@ -90,8 +78,20 @@ describe('Test Topic Subscribe', () => {
     it('Clear Subscription Filter Tags', async () => {
         try {
             const res = await cmq.clearSubscriptionFilterTags({
-                topicName: 'sub-topic',
-                subscriptionName: 'test'
+                topicName: 'TestSubscribe',
+                subscriptionName: 'Test'
+            });
+            ok(res.code === 0, res.message);
+        } catch (e) {
+            fail(e);
+        }
+    });
+
+    it('Unsubscribe', async () => {
+        try {
+            const res = await cmq.unsubscribe({
+                topicName: 'TestSubscribe',
+                subscriptionName: 'Test'
             });
             ok(res.code === 0, res.message);
         } catch (e) {

@@ -12,24 +12,11 @@ const cmq = CMQ.NEW({
     region: 'gz'
 });
 
-describe('Test Queue Message', () => {
-    it('Create Queue ', async () => {
-        try {
-            const res = await cmq.createQueue({
-                queueName: 'send',
-                rewindSeconds: 60,
-                maxMsgHeapNum: 1000000
-            });
-            ok(res.code === 0, res.message);
-        } catch (e) {
-            fail(e);
-        }
-    });
-
+describe('Queue Message', () => {
     it('Send Message', async () => {
         try {
             const res = await cmq.sendMessage({
-                queueName: 'send',
+                queueName: 'SendTest',
                 msgBody: {
                     name: 'kain'
                 }
@@ -43,11 +30,11 @@ describe('Test Queue Message', () => {
     it('Receive Delete Message', async () => {
         try {
             const res1 = await cmq.receiveMessage({
-                queueName: 'send'
+                queueName: 'SendTest'
             });
             if (res1.code !== 0) fail(res1.message);
             const res2 = await cmq.deleteMessage({
-                queueName: 'send',
+                queueName: 'SendTest',
                 receiptHandle: res1.receiptHandle
             });
             ok(res2.code === 0, res2.message);
@@ -59,7 +46,7 @@ describe('Test Queue Message', () => {
     it('Batch Send Message', async () => {
         try {
             const res = await cmq.batchSendMessage({
-                queueName: 'send',
+                queueName: 'SendTest',
                 msgBody: [
                     {type: 'a1', name: 'cc'},
                     {type: 'a2', name: 'xy'}
@@ -74,13 +61,13 @@ describe('Test Queue Message', () => {
     it('Batch Receive Delete Message', async () => {
         try {
             const res1 = await cmq.batchReceiveMessage({
-                queueName: 'send',
+                queueName: 'SendTest',
                 numOfMsg: 16
             });
             if (res1.code !== 0) fail(res1.message);
             const receiptHandles = res1.msgInfoList.map(v => v.receiptHandle);
             const res2 = await cmq.batchDeleteMessage({
-                queueName: 'send',
+                queueName: 'SendTest',
                 receiptHandle: receiptHandles
             });
             ok(res2.code === 0, res2.message);
