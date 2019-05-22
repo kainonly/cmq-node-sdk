@@ -1,14 +1,17 @@
 import {ok, fail} from 'assert';
 import {config} from 'dotenv';
+import {env} from 'process';
 import {CMQ} from '../../cmq-nodejs-sdk';
 
-const env = config().parsed;
+let myenv = config().parsed;
+if (myenv === undefined) myenv = env;
+
 const cmq = CMQ.NEW({
     path: '/v2/index.php',
     signatureMethod: 'HmacSHA256',
     extranet: true,
-    secretId: env.secretId,
-    secretKey: env.secretKey,
+    secretId: myenv.secretId,
+    secretKey: myenv.secretKey,
     region: 'gz'
 });
 
