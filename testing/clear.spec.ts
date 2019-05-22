@@ -15,7 +15,9 @@ const cmq = CMQ.NEW({
     region: 'gz'
 });
 
-describe('Clear', () => {
+describe('Clear', function () {
+    this.timeout(5000);
+
     it('Delete SendTest Queue', async () => {
         try {
             const res = await cmq.deleteQueue({

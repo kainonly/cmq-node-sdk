@@ -15,7 +15,9 @@ const cmq = CMQ.NEW({
     region: 'gz'
 });
 
-describe('Queue', () => {
+describe('Queue', function () {
+    this.timeout(5000);
+
     it('Create Test Queue', async () => {
         try {
             const res = await cmq.createQueue({

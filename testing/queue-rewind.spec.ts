@@ -15,7 +15,9 @@ const cmq = CMQ.NEW({
     region: 'gz'
 });
 
-describe('Queue Rewind', () => {
+describe('Queue Rewind', function () {
+    this.timeout(5000);
+
     it('Send Message', async () => {
         try {
             const res = await cmq.sendMessage({
