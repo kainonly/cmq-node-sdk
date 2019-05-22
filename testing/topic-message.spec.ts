@@ -12,7 +12,7 @@ const cmq = CMQ.NEW({
     extranet: true,
     secretId: myenv.secretId,
     secretKey: myenv.secretKey,
-    region: 'bj'
+    region: 'gz'
 });
 
 describe('Topic Message', function () {
