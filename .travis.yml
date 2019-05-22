@@ -5,10 +5,9 @@ node_js:
 before_script:
   - npm install
 script:
-  - npm run test:queue
-  - npm run test:queue-message
-  - npm run test:queue-rewind
-  - npm run test:topic
-  - npm run test:topic-message
-  - npm run test:topic-subscribe
-  - test:clear
+  npm run test:queue \
+  && npm run test:queue-message \
+  && npm run test:queue-rewind \
+  && npm run test:topic \
+  && npm run test:topic-message \
+  && npm run test:topic-subscribe
