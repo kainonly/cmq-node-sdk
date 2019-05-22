@@ -3,9 +3,10 @@ language: node_js
 node_js:
   - "10"
 script:
-  - 'npm run test:queue'
-  - 'npm run test:queue-message'
-  - 'npm run test:queue-rewind'
-  - 'npm run test:topic'
-  - 'npm run test:topic-message'
-  - 'npm run test:topic-subscribe'
+  - npm run test:queue
+  - npm run test:queue-message
+  - npm run test:queue-rewind
+  - npm run test:topic
+  - npm run test:topic-message
+  - npm run test:topic-subscribe
+  - npm run test:clear

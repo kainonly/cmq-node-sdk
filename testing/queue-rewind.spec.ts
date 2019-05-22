@@ -12,7 +12,7 @@ const cmq = CMQ.NEW({
     extranet: true,
     secretId: myenv.secretId,
     secretKey: myenv.secretKey,
-    region: 'gz'
+    region: 'usw'
 });
 
 describe('Queue Rewind', function () {
