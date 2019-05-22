@@ -4,12 +4,11 @@ node_js:
   - "10"
 before_script:
   - npm install
-  - npm install mocha -g
 script:
-  - mocha --require ts-node/register --ui bdd testing\queue.spec.ts
-  - mocha --require ts-node/register --ui bdd testing\queue-message.spec.ts
-  - mocha --require ts-node/register --ui bdd testing\queue-rewind.spec.ts
-  - mocha --require ts-node/register --ui bdd testing\topic.spec.ts
-  - mocha --require ts-node/register --ui bdd testing\topic-message.spec.ts
-  - mocha --require ts-node/register --ui bdd testing\topic-subscribe.spec.ts
-  - mocha --require ts-node/register --ui bdd testing\clear.spec.ts
+  - npm run test:queue
+  - npm run test:queue-message
+  - npm run test:queue-rewind
+  - npm run test:topic
+  - npm run test:topic-message
+  - npm run test:topic-subscribe
+  - test:clear
