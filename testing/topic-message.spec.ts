@@ -15,7 +15,9 @@ const cmq = CMQ.NEW({
     region: 'gz'
 });
 
-describe('Topic Message', () => {
+describe('Topic Message', function () {
+    this.timeout(5000);
+
     it('Subscribe', async () => {
         try {
             const res = await cmq.subscribe({

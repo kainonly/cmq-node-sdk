@@ -15,7 +15,9 @@ const cmq = CMQ.NEW({
     region: 'gz'
 });
 
-describe('Topic', () => {
+describe('Topic', function () {
+    this.timeout(5000);
+
     it('Create Test Topic', async () => {
         try {
             const res = await cmq.createTopic({
