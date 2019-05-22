@@ -12,25 +12,14 @@ const cmq = CMQ.NEW({
     region: 'gz'
 });
 
-describe('Test Topic Message', () => {
-    it('Create Topic ', async () => {
-        try {
-            const res = await cmq.createTopic({
-                topicName: 'beta-topic'
-            });
-            ok(res.code === 0, res.message);
-        } catch (e) {
-            fail(e);
-        }
-    });
-
+describe('Topic Message', () => {
     it('Subscribe', async () => {
         try {
             const res = await cmq.subscribe({
-                topicName: 'beta-topic',
-                subscriptionName: 'test-without-tag',
+                topicName: 'Beta',
+                subscriptionName: 'WithoutTag',
                 protocol: 'queue',
-                endpoint: 'test-normal'
+                endpoint: 'TestNormal'
             });
             ok(res.code === 0, res.message);
         } catch (e) {
@@ -41,10 +30,10 @@ describe('Test Topic Message', () => {
     it('Tag Subscribe', async () => {
         try {
             const res = await cmq.subscribe({
-                topicName: 'beta-topic',
-                subscriptionName: 'test-with-tag',
+                topicName: 'Beta',
+                subscriptionName: 'WithTag',
                 protocol: 'queue',
-                endpoint: 'test-tag',
+                endpoint: 'TestTag',
                 filterTag: [
                     'mytag'
                 ]
@@ -58,7 +47,7 @@ describe('Test Topic Message', () => {
     it('Publish Message', async () => {
         try {
             const res = await cmq.publishMessage({
-                topicName: 'beta-topic',
+                topicName: 'Beta',
                 msgBody: {
                     name: 'kain'
                 }
@@ -72,7 +61,7 @@ describe('Test Topic Message', () => {
     it('Tag Publish Message', async () => {
         try {
             const res = await cmq.publishMessage({
-                topicName: 'beta-topic',
+                topicName: 'Beta',
                 msgBody: {
                     name: 'vvv'
                 },
@@ -89,7 +78,7 @@ describe('Test Topic Message', () => {
     it('Batch Publish Message', async () => {
         try {
             const res = await cmq.batchPublishMessage({
-                topicName: 'beta-topic',
+                topicName: 'Beta',
                 msgBody: [
                     {type: 'a1', name: '11'},
                     {type: 'a2', name: '22'}
@@ -104,7 +93,7 @@ describe('Test Topic Message', () => {
     it('Tag Batch Publish Message', async () => {
         try {
             const res = await cmq.batchPublishMessage({
-                topicName: 'beta-topic',
+                topicName: 'Beta',
                 msgBody: [
                     {type: 'a1', name: '11'},
                     {type: 'a2', name: '22'}
@@ -119,25 +108,13 @@ describe('Test Topic Message', () => {
         }
     });
 
-    it('Create Topic Router Type', async () => {
-        try {
-            const res = await cmq.createTopic({
-                topicName: 'router-topic',
-                filterType: 2
-            });
-            ok(res.code === 0, res.message);
-        } catch (e) {
-            fail(e);
-        }
-    });
-
     it('Subscribe Router', async () => {
         try {
             const res = await cmq.subscribe({
-                topicName: 'router-topic',
-                subscriptionName: 'test',
+                topicName: 'BetaRouter',
+                subscriptionName: 'Test',
                 protocol: 'queue',
-                endpoint: 'normal',
+                endpoint: 'Normal',
                 bindingKey: ['sys.common']
             });
             ok(res.code === 0, res.message);
@@ -149,10 +126,10 @@ describe('Test Topic Message', () => {
     it('Subscribe RouterKey', async () => {
         try {
             const res = await cmq.subscribe({
-                topicName: 'router-topic',
-                subscriptionName: 'test-key',
+                topicName: 'BetaRouter',
+                subscriptionName: 'TestKey',
                 protocol: 'queue',
-                endpoint: 'special',
+                endpoint: 'Special',
                 bindingKey: ['*.common']
             });
             ok(res.code === 0, res.message);
@@ -164,7 +141,7 @@ describe('Test Topic Message', () => {
     it('Publish Message Router', async () => {
         try {
             const res = await cmq.publishMessage({
-                topicName: 'router-topic',
+                topicName: 'BetaRouter',
                 msgBody: {
                     name: 'kain'
                 },
@@ -179,7 +156,7 @@ describe('Test Topic Message', () => {
     it('Publish Message RouterKey ', async () => {
         try {
             const res = await cmq.publishMessage({
-                topicName: 'router-topic',
+                topicName: 'BetaRouter',
                 msgBody: {
                     name: '123'
                 },
