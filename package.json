@@ -6,7 +6,6 @@
   },
   "scripts": {
     "start": "docsify serve docs",
-    "test": "",
     "build": "gulp",
     "release": "npm run build && npm publish"
   },
