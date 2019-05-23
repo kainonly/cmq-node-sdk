@@ -4,7 +4,6 @@ CMQ 消息队列 NODEJS SDK，[CMQ 接口文档详情](https://cloud.tencent.com
 
 [![npm](https://img.shields.io/npm/v/cmq-sdk.svg?style=flat-square)](https://www.npmjs.com/package/cmq-sdk)
 [![Travis (.org)](https://img.shields.io/travis/kainonly/cmq-nodejs-sdk.svg?style=flat-square)](https://travis-ci.org/kainonly/cmq-nodejs-sdk)
-[![Coveralls github](https://img.shields.io/coveralls/github/kainonly/cmq-nodejs-sdk.svg?style=flat-square)](https://coveralls.io/github/kainonly/cmq-nodejs-sdk)
 [![node](https://img.shields.io/node/v/cmq-sdk.svg?style=flat-square)](https://www.npmjs.com/package/cmq-sdk)
 [![Downloads](https://img.shields.io/npm/dm/cmq-sdk.svg?style=flat-square)](https://www.npmjs.com/package/cmq-sdk)
 [![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-blue.svg?style=flat-square)](https://www.typescriptlang.org/)
