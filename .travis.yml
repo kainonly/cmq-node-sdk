@@ -10,3 +10,5 @@ script:
   - npm run test:topic-message
   - npm run test:topic-subscribe
   - npm run test:clear
+after_success:
+  - npm run coveralls
