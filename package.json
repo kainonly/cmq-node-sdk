@@ -1,22 +1,32 @@
 {
   "name": "cmq-sdk",
-  "version": "1.1.0",
+  "version": "2.0.0-beta",
+  "scripts": {
+    "start": "tsc example.ts",
+    "docs": "docsify serve docs",
+    "build": "rimraf dist && gulp",
+    "test": "jest",
+    "release": "npm run build && npm publish"
+  },
+  "main": "dist/cmq.js",
+  "dependencies": {
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "@types/request": "^2.48.1",
+    "gulp": "^4.0.1",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "jest": "^24.9.0",
+    "prettier": "1.19.1",
+    "rimraf": "^3.0.0",
+    "ts-jest": "^24.2.0",
+    "ts-node": "^8.1.0",
+    "typescript": "^3.4.5"
+  },
   "engines": {
     "node": ">= 8.0.0"
   },
-  "scripts": {
-    "start": "docsify serve docs",
-    "build": "gulp",
-    "release": "npm run build && npm publish",
-    "test:queue": "mocha --require ts-node/register --ui bdd --reporter spec testing/queue.spec.ts",
-    "test:queue-message": "mocha --require ts-node/register --ui bdd --reporter spec testing/queue-message.spec.ts",
-    "test:queue-rewind": "mocha --require ts-node/register --ui bdd --reporter spec testing/queue-rewind.spec.ts",
-    "test:topic": "mocha --require ts-node/register --ui bdd --reporter spec testing/topic.spec.ts",
-    "test:topic-message": "mocha --require ts-node/register --ui bdd --reporter spec testing/topic-message.spec.ts",
-    "test:topic-subscribe": "mocha --require ts-node/register --ui bdd --reporter spec testing/topic-subscribe.spec.ts",
-    "test:clear": "mocha --require ts-node/register --ui bdd --reporter spec testing/clear.spec.ts"
-  },
-  "main": "dist/cmq.js",
   "keywords": [
     "Tencent",
     "CMQ",
@@ -26,28 +36,13 @@
     "name": "kain",
     "email": "zhangtqx@vip.qq.com"
   },
-  "license": "MIT",
-  "homepage": "https://cmq.nodejs.kain.net.cn",
+  "homepage": "https://cmq.kainonly.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kainonly/cmq-nodejs-sdk.git"
+    "url": "git+https://github.com/kainonly/cmq-node-sdk.git"
   },
   "bugs": {
-    "url": "https://github.com/kainonly/cmq-nodejs-sdk/issues"
+    "url": "https://github.com/kainonly/cmq-node-sdk/issues"
   },
-  "dependencies": {
-    "request": "^2.88.0"
-  },
-  "devDependencies": {
-    "@types/dotenv": "^6.1.1",
-    "@types/mocha": "^5.2.6",
-    "@types/request": "^2.48.1",
-    "del": "^4.1.1",
-    "dotenv": "^7.0.0",
-    "gulp": "^4.0.1",
-    "gulp-typescript": "^5.0.1",
-    "mocha": "^6.1.4",
-    "ts-node": "^8.1.0",
-    "typescript": "^3.4.5"
-  }
+  "license": "MIT"
 }
