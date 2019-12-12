@@ -119,7 +119,7 @@ export class Common {
         const args = this.getArgs();
         return new Promise((resolve, reject) => {
             request.post(this.protocol + this.uri + this.path, {
-                timeout: 2000,
+                timeout: (args.pollingWaitSeconds) ? args.pollingWaitSeconds * 1000 + 1000 : 2000,
                 form: args
             }, (error, response, body) => {
                 try {
