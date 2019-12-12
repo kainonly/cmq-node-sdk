@@ -55,7 +55,7 @@ export declare namespace CMQ {
      * @param instance 实例配置
      * @constructor
      */
-    function NEW(instance: Instance): Client;
+    export function NEW(instance: Instance): Client;
     /**
      * CMQ客户端
      */
@@ -211,4 +211,5 @@ export declare namespace CMQ {
          */
         clearSubscriptionFilterTags(options: ClearSubscriptionFilterTagsOptions): Promise<ClearSubscriptionFilterTagsResponse>;
     }
+    export {};
 }
