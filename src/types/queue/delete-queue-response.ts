@@ -1,4 +1,4 @@
-import {CommonResponse} from "../common-response";
+import { CommonResponse } from '../common-response';
 
 export interface DeleteQueueResponse extends CommonResponse {
 }

@@ -1,17 +1,13 @@
 {
   "compilerOptions": {
-    "experimentalDecorators": true,
-    "esModuleInterop": true,
-    "moduleResolution": "node",
     "outDir": "./dist/",
     "module": "commonjs",
+    "target": "esnext",
+    "moduleResolution": "node",
     "noImplicitAny": true,
+    "removeComments": true,
     "sourceMap": true,
-    "declaration": true,
-    "target": "es6",
-    "typeRoots": [
-      "node_modules/@types"
-    ]
+    "declaration": true
   },
   "exclude": [
     "node_modules",
