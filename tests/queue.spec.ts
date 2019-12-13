@@ -1,6 +1,7 @@
 import { client } from './helper';
 
 describe('队列基础功能', () => {
+  jest.setTimeout(60 * 1000);
   const queueName = 'Test-' +
     Math.random()
       .toString(32)
