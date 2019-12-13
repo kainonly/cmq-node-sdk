@@ -1,3 +1,6 @@
+/**
+ * 实例配置
+ */
 export interface Instance {
   /**
    * 请求固定路径

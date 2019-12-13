@@ -8,7 +8,7 @@ export interface BatchSendMessageOptions extends CommonOptions {
   /**
    * 消息正文
    */
-  msgBody: any[];
+  msgBody: string[];
   /**
    * 单位为秒，表示该消息发送到队列后，需要延时多久用户才可见。（该延时对一批消息有效，不支持多对多映射）
    */

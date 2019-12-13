@@ -8,7 +8,7 @@ export interface SendMessageOptions extends CommonOptions {
   /**
    * 消息正文
    */
-  msgBody: any;
+  msgBody: string;
   /**
    * 单位为秒，表示该消息发送到队列后，需要延时多久用户才可见该消息。
    */

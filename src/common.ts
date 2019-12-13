@@ -1,32 +1,37 @@
 import { createHmac } from 'crypto';
 import { Instance } from './types/instance';
 import { CommonOptions } from './types/common-options';
-import { isArray } from 'util';
 import * as request from 'request';
 
+/**
+ * 公共处理类
+ */
 export class Common {
   /**
    * 请求方式
    */
-  private method = 'POST';
+  private readonly method = 'POST';
 
   /**
    * 请求地址
    */
-  private uri: string;
+  private readonly uri: string;
 
   /**
    * 请求固定路径
    */
-  private path: string;
+  private readonly path: string;
 
   /**
    * 请求协议
    */
-  private protocol: string;
+  private readonly protocol: string;
 
   /**
-   * 请求客户端
+   * 公共配置初始化
+   * @param instance
+   * @param options
+   * @param type
    */
   constructor(
     private instance: Instance,
@@ -64,7 +69,7 @@ export class Common {
       if (!vars[key]) {
         continue;
       }
-      if (isArray(vars[key])) {
+      if (Array.isArray(vars[key])) {
         for (const k in vars[key]) {
           if (vars[key].hasOwnProperty(k)) {
             args[key + '.' + k] = vars[key][k];
@@ -81,7 +86,7 @@ export class Common {
    * 签名参数
    */
   private getSignParams(): string {
-    const operates = [];
+    const operates: string[] = [];
     const args = this.getArgs();
     for (const key in args) {
       if (!args.hasOwnProperty(key)) continue;
@@ -94,7 +99,7 @@ export class Common {
    * 生成签名
    */
   private factorySignature(param: any): string {
-    let method;
+    let method: string;
     switch (this.instance.signatureMethod) {
       case 'HmacSHA1':
         method = 'sha1';
@@ -102,22 +107,27 @@ export class Common {
       case 'HmacSHA256':
         method = 'sha256';
         break;
+      default:
+        method = 'sha1';
     }
-    return Buffer.from(createHmac(method, this.instance.secretKey)
+    const hmac = createHmac(method, this.instance.secretKey)
       .update(param)
-      .digest(),
-    ).toString('base64');
+      .digest();
+    return Buffer
+      .from(hmac)
+      .toString('base64');
   }
 
   /**
    * 发起请求
    */
-  result(): Promise<any> {
-    this.options.Nonce = parseInt((Math.random() * 10000).toString());
-    this.options.Timestamp = parseInt((new Date().getTime() / 1000).toString());
+  send(): Promise<any> {
+    this.options.Nonce = Math.floor(Math.random() * 10000);
+    this.options.Timestamp = Math.floor(new Date().getTime() / 1000);
     const params = this.getSignParams();
     this.options.Signature = this.factorySignature(params);
     const args = this.getArgs();
+    // TODO: 更换为 got 库
     return new Promise((resolve, reject) => {
       request.post(this.protocol + this.uri + this.path, {
         timeout: (args.pollingWaitSeconds) ? args.pollingWaitSeconds * 1000 + 1000 : 2000,
