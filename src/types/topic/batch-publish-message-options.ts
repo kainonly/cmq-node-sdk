@@ -8,7 +8,7 @@ export interface BatchPublishMessageOptions extends CommonOptions {
   /**
    * 消息正文。表示这一批量中的一条消息
    */
-  msgBody: any[];
+  msgBody: string[];
   /**
    * 消息过滤标签。消息标签（用于消息过滤)
    */

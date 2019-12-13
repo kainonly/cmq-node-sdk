@@ -1,3 +1,6 @@
+/**
+ * 公共配置
+ */
 export interface CommonOptions {
   /**
    * 具体操作的指令接口名称

@@ -3,7 +3,7 @@ import { Client } from './client';
 
 const CMQ = {
   /**
-   * 配置客户端
+   * 创建 CMQ 客户端
    */
   NEW(instance: Instance) {
     return new Client(instance);
