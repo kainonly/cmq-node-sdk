@@ -40,7 +40,7 @@ describe('面向标签的主题消息发布', () => {
       });
       expect(response2.code).toBe(0);
       done();
-    }, 2000);
+    }, 3000);
   });
 
   test('发布消息', async (done) => {

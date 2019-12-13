@@ -42,7 +42,7 @@ describe('面向路由匹配的主题消息发布', () => {
       });
       expect(response2.code).toBe(0);
       done();
-    }, 2000);
+    }, 3000);
   });
 
   test('向{*.common|system.common}发布消息', async (done) => {

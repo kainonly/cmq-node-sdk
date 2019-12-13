@@ -29,7 +29,7 @@ describe('主题订阅功能', () => {
       });
       expect(response.code).toBe(0);
       done();
-    }, 2000);
+    }, 3000);
   });
 
   test('获取订阅列表', async () => {

@@ -28,7 +28,7 @@ describe('主题消息功能', () => {
       });
       expect(response.code).toBe(0);
       done();
-    }, 2000);
+    }, 3000);
   });
 
   test('发布消息', async (done) => {
