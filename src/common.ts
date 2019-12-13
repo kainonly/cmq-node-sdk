@@ -1,7 +1,7 @@
 import { createHmac } from 'crypto';
 import { Instance } from './types/instance';
 import { CommonOptions } from './types/common-options';
-import * as request from 'request';
+import got, { CancelableRequest } from 'got';
 
 /**
  * 公共处理类
@@ -121,25 +121,19 @@ export class Common {
   /**
    * 发起请求
    */
-  send(): Promise<any> {
+  send(): CancelableRequest<any> {
     this.options.Nonce = Math.floor(Math.random() * 10000);
     this.options.Timestamp = Math.floor(new Date().getTime() / 1000);
     const params = this.getSignParams();
     this.options.Signature = this.factorySignature(params);
     const args = this.getArgs();
-    // TODO: 更换为 got 库
-    return new Promise((resolve, reject) => {
-      request.post(this.protocol + this.uri + this.path, {
-        timeout: (args.pollingWaitSeconds) ? args.pollingWaitSeconds * 1000 + 1000 : 2000,
-        form: args,
-      }, (error, response, body) => {
-        try {
-          if (error) reject(error);
-          else resolve(JSON.parse(body));
-        } catch (e) {
-          reject(e);
-        }
-      });
-    });
+    let timeout = 2000;
+    if (args.pollingWaitSeconds) {
+      timeout = args.pollingWaitSeconds * 1000 + 1000;
+    }
+    return got.post(this.protocol + this.uri + this.path, {
+      form: args,
+      timeout,
+    }).json();
   }
 }
