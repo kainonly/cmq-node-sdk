@@ -7,7 +7,7 @@ const client = CMQ.NEW({
   extranet: true,
   secretId: env.SECRETID,
   secretKey: env.SECRETKEY,
-  region: 'gz',
+  region: env.REGION ? env.REGION : 'gz',
 });
 
 export { client };

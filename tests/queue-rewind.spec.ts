@@ -1,6 +1,7 @@
 import { client } from './helper';
 
 describe('队列消息回溯功能', () => {
+  jest.setTimeout(60 * 1000);
   const queueName = 'Test-' +
     Math.random()
       .toString(32)
@@ -15,7 +16,6 @@ describe('队列消息回溯功能', () => {
   });
 
   test('向队列发送消息', async (done) => {
-    jest.setTimeout(60 * 1000);
     setTimeout(async () => {
       const response = await client.sendMessage({
         queueName: queueName,
@@ -43,7 +43,6 @@ describe('队列消息回溯功能', () => {
   });
 
   test('回溯消息', async (done) => {
-    jest.setTimeout(60 * 1000);
     setTimeout(async () => {
       const now = Math.floor(new Date().getTime() / 1000);
       const response = await client.rewindQueue({
