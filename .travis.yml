@@ -3,4 +3,4 @@ language: node_js
 node_js:
   - "10"
 script:
-  - npm run jest
+  - npm run test
