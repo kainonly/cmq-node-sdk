@@ -4,7 +4,7 @@
   "scripts": {
     "start": "docsify serve docs",
     "build": "rimraf dist && gulp",
-    "test": "jest",
+    "test": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "release": "npm run build && npm publish"
   },
   "main": "dist/cmq.js",
@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "@types/jest": "^24.0.23",
+    "coveralls": "^3.0.9",
     "gulp": "^4.0.1",
     "gulp-typescript": "^6.0.0-alpha.1",
     "jest": "^24.9.0",
