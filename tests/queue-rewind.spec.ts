@@ -51,7 +51,7 @@ describe('队列消息回溯功能', () => {
       });
       expect(response.code).toBe(0);
       done();
-    }, 10000);
+    }, 20000);
   });
 
   test('删除队列', async () => {
