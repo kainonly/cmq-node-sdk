@@ -80,7 +80,7 @@ class Common {
         const params = this.getSignParams();
         this.options.Signature = this.factorySignature(params);
         const args = this.getArgs();
-        let timeout = 2000;
+        let timeout = 10000;
         if (args.pollingWaitSeconds) {
             timeout = args.pollingWaitSeconds * 1000 + 1000;
         }
