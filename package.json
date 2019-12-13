@@ -1,9 +1,8 @@
 {
   "name": "cmq-sdk",
-  "version": "2.0.0-beta",
+  "version": "2.0.0",
   "scripts": {
-    "start": "tsc example.ts",
-    "docs": "docsify serve docs",
+    "start": "docsify serve docs",
     "build": "rimraf dist && gulp",
     "test": "jest",
     "release": "npm run build && npm publish"
