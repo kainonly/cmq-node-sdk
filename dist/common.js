@@ -29,18 +29,17 @@ class Common {
         const vars = this.options;
         const keys = Object.keys(this.options).sort();
         for (const key of keys) {
-            if (!vars[key]) {
-                continue;
-            }
-            if (Array.isArray(vars[key])) {
-                for (const k in vars[key]) {
-                    if (vars[key].hasOwnProperty(k)) {
-                        args[key + '.' + k] = vars[key][k];
+            if (vars.hasOwnProperty(key)) {
+                if (Array.isArray(vars[key])) {
+                    for (const k in vars[key]) {
+                        if (vars[key].hasOwnProperty(k)) {
+                            args[key + '.' + k] = vars[key][k];
+                        }
                     }
                 }
-            }
-            else {
-                args[key] = vars[key];
+                else {
+                    args[key] = vars[key];
+                }
             }
         }
         return args;
@@ -49,9 +48,9 @@ class Common {
         const operates = [];
         const args = this.getArgs();
         for (const key in args) {
-            if (!args.hasOwnProperty(key))
-                continue;
-            operates.push(key + '=' + args[key]);
+            if (args.hasOwnProperty(key)) {
+                operates.push(key + '=' + args[key]);
+            }
         }
         return this.getSignRequest() + '?' + operates.join('&');
     }
@@ -64,8 +63,6 @@ class Common {
             case 'HmacSHA256':
                 method = 'sha256';
                 break;
-            default:
-                method = 'sha1';
         }
         const hmac = crypto_1.createHmac(method, this.instance.secretKey)
             .update(param)
