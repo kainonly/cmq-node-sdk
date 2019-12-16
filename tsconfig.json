@@ -5,7 +5,6 @@
     "target": "esnext",
     "moduleResolution": "node",
     "noImplicitAny": true,
-    "removeComments": true,
     "sourceMap": true,
     "declaration": true
   },

@@ -2,11 +2,23 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const crypto_1 = require("crypto");
 const got_1 = require("got");
+/**
+ * 公共处理类
+ */
 class Common {
+    /**
+     * 公共配置初始化
+     * @param instance
+     * @param options
+     * @param type
+     */
     constructor(instance, options, type) {
         this.instance = instance;
         this.options = options;
         this.type = type;
+        /**
+         * 请求方式
+         */
         this.method = 'POST';
         options.SignatureMethod = instance.signatureMethod;
         options.SecretId = instance.secretId;
@@ -21,9 +33,15 @@ class Common {
         }
         this.path = instance.path;
     }
+    /**
+     * 获取请求部分签名参数
+     */
     getSignRequest() {
         return this.method + this.uri + this.path;
     }
+    /**
+     * 生成参数
+     */
     getArgs() {
         const args = {};
         const vars = this.options;
@@ -45,6 +63,9 @@ class Common {
         }
         return args;
     }
+    /**
+     * 签名参数
+     */
     getSignParams() {
         const operates = [];
         const args = this.getArgs();
@@ -55,6 +76,9 @@ class Common {
         }
         return this.getSignRequest() + '?' + operates.join('&');
     }
+    /**
+     * 生成签名
+     */
     factorySignature(param) {
         let method;
         switch (this.instance.signatureMethod) {
@@ -74,6 +98,9 @@ class Common {
             .from(hmac)
             .toString('base64');
     }
+    /**
+     * 发起请求
+     */
     send() {
         this.options.Nonce = Math.floor(Math.random() * 10000);
         this.options.Timestamp = Math.floor(new Date().getTime() / 1000);

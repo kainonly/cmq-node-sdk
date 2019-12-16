@@ -49,34 +49,149 @@ import { GetSubscriptionAttributesOptions } from './types/topic/get-subscription
 import { GetSubscriptionAttributesResponse } from './types/topic/get-subscription-attributes-response';
 import { ClearSubscriptionFilterTagsOptions } from './types/topic/clear-subscription-filter-tags-options';
 import { ClearSubscriptionFilterTagsResponse } from './types/topic/clear-subscription-filter-tags-response';
+/**
+ * 客户端类
+ */
 export declare class Client {
     private instance;
+    /**
+     * 客户端初始化
+     * @param instance
+     */
     constructor(instance: Instance);
+    /**
+     * 队列类型统一发送
+     * @param options
+     */
     private queueRequestSend;
+    /**
+     * 主题类型统一发送
+     * @param options
+     */
     private topicRequestSend;
+    /**
+     * 创建队列
+     * @param options
+     */
     createQueue(options: CreateQueueOptions): Promise<CreateQueueResponse>;
+    /**
+     * 获取队列列表
+     * @param options
+     */
     listQueue(options: ListQueueOptions): Promise<ListQueueResponse>;
+    /**
+     * 获取队列属性
+     * @param options
+     */
     getQueueAttributes(options: GetQueueAttributesOptions): Promise<GetQueueAttributesResponse>;
+    /**
+     * 修改队列属性
+     * @param options
+     */
     setQueueAttributes(options: SetQueueAttributesOptions): Promise<SetQueueAttributesResponse>;
+    /**
+     * 删除队列
+     * @param options
+     */
     deleteQueue(options: DeleteQueueOptions): Promise<DeleteQueueResponse>;
+    /**
+     * 回溯队列
+     * @param options
+     */
     rewindQueue(options: RewindQueueOptions): Promise<RewindQueueResponse>;
+    /**
+     * 发送消息
+     * @param options
+     */
     sendMessage(options: SendMessageOptions): Promise<SendMessageResponse>;
+    /**
+     * 批量发送消息
+     * @param options
+     */
     batchSendMessage(options: BatchSendMessageOptions): Promise<BatchSendMessageResponse>;
+    /**
+     * 消费消息
+     * @param options
+     */
     receiveMessage(options: ReceiveMessageOptions): Promise<ReceiveMessageResponse>;
+    /**
+     * 批量消费消息
+     * @param options
+     */
     batchReceiveMessage(options: BatchReceiveMessageOptions): Promise<BatchReceiveMessageResponse>;
+    /**
+     * 删除消息
+     * @param options
+     */
     deleteMessage(options: DeleteMessageOptions): Promise<DeleteMessageResponse>;
+    /**
+     * 批量删除消息
+     * @param options
+     */
     batchDeleteMessage(options: BatchDeleteMessageOptions): Promise<BatchDeleteMessageResponse>;
+    /**
+     * 创建主题
+     * @param options
+     */
     createTopic(options: CreateTopicOptions): Promise<CreateTopicResponse>;
+    /**
+     * 修改主题属性
+     * @param options
+     */
     setTopicAttributes(options: SetTopicAttributesOptions): Promise<SetTopicAttributesResponse>;
+    /**
+     * 获取主题列表
+     * @param options
+     */
     listTopic(options: ListTopicOptions): Promise<ListTopicResponse>;
+    /**
+     * 获取主题属性
+     * @param options
+     */
     getTopicAttributes(options: GetTopicAttributesOptions): Promise<GetTopicAttributesResponse>;
+    /**
+     * 删除主题
+     * @param options
+     */
     deleteTopic(options: DeleteTopicOptions): Promise<DeleteTopicResponse>;
+    /**
+     * 发布消息
+     * @param options
+     */
     publishMessage(options: PublishMessageOptions): Promise<PublishMessageResponse>;
+    /**
+     * 批量发布消息
+     * @param options
+     */
     batchPublishMessage(options: BatchPublishMessageOptions): Promise<BatchPublishMessageResponse>;
+    /**
+     * 创建订阅
+     * @param options
+     */
     subscribe(options: SubscribeOptions): Promise<SubscribeResponse>;
+    /**
+     * 获取订阅列表
+     * @param options
+     */
     listSubscriptionByTopic(options: ListSubscriptionByTopicOptions): Promise<ListSubscriptionByTopicResponse>;
+    /**
+     * 修改订阅属性
+     * @param options
+     */
     setSubscriptionAttributes(options: SetSubscriptionAttributesOptions): Promise<SetSubscriptionAttributesResponse>;
+    /**
+     * 删除订阅
+     * @param options
+     */
     unsubscribe(options: UnsubscribeOptions): Promise<UnsubscribeResponse>;
+    /**
+     * 获取订阅属性
+     * @param options
+     */
     getSubscriptionAttributes(options: GetSubscriptionAttributesOptions): Promise<GetSubscriptionAttributesResponse>;
+    /**
+     * 清空订阅标签
+     * @param options
+     */
     clearSubscriptionFilterTags(options: ClearSubscriptionFilterTagsOptions): Promise<ClearSubscriptionFilterTagsResponse>;
 }

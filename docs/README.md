@@ -58,9 +58,20 @@ const cmq = CMQ.NEW({
 创建好客户端即可操作使用，例如：创建一个 `test` 队列
 
 ```typescript
-const res = await cmq.createQueue({
+client.createQueue({
     queueName: 'test'
+}).then(response => {
+    // response
 });
+
+// Or use async/await
+try{
+    const response = await client.createQueue({
+        queueName: 'test'
+    });
+} catch (e) {
+    // error
+}
 ```
 
 > 详细文档请查看[cmq.kainonly.com](https://cmq.kainonly.com)，关于 cmq 介绍请查看官网 [接口文档](https://cloud.tencent.com/document/api/406/5852)
