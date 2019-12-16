@@ -1,2 +1,2 @@
 service_name: travis-ci
-repo_token: 6sfc1fJg8q6kJWNeZ6HOWk8bha3sbn1xN
+repo_token: ${REPO_TOKEN}
