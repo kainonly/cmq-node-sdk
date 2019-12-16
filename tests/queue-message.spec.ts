@@ -31,6 +31,7 @@ describe('队列消息功能', () => {
     setTimeout(async () => {
       const response = await client.receiveMessage({
         queueName: queueName,
+        pollingWaitSeconds: 3000,
       });
       expect(response.code).toBe(0);
       expect(response.receiptHandle).not.toBeNull();
