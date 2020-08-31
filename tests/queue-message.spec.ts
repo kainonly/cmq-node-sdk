@@ -1,7 +1,7 @@
 import { client } from './helper';
 
+jest.setTimeout(60 * 1000);
 describe('队列消息功能', () => {
-  jest.setTimeout(60 * 1000);
   const queueName = 'Test-' +
     Math.random()
       .toString(32)
@@ -31,39 +31,33 @@ describe('队列消息功能', () => {
     setTimeout(async () => {
       const response = await client.receiveMessage({
         queueName: queueName,
-        pollingWaitSeconds: 3000,
+        pollingWaitSeconds: 1,
       });
       expect(response.code).toBe(0);
       expect(response.receiptHandle).not.toBeNull();
       receiptHandle = response.receiptHandle;
       done();
-    }, 2000);
+    }, 5000);
   });
 
-  test('删除消息', async (done) => {
-    setTimeout(async () => {
-      const response = await client.deleteMessage({
-        queueName: queueName,
-        receiptHandle: receiptHandle,
-      });
-      expect(response.code).toBe(0);
-      done();
-    }, 2000);
+  test('删除消息', async () => {
+    const response = await client.deleteMessage({
+      queueName: queueName,
+      receiptHandle: receiptHandle,
+    });
+    expect(response.code).toBe(0);
   });
 
-  test('批量发送消息', async (done) => {
-    setTimeout(async () => {
-      const data: string[] = [];
-      for (let i = 0; i < 16; i++) {
-        data.push(`{"index":${i}}`);
-      }
-      const response = await client.batchSendMessage({
-        queueName: queueName,
-        msgBody: data,
-      });
-      expect(response.code).toBe(0);
-      done();
-    }, 2000);
+  test('批量发送消息', async () => {
+    const data: string[] = [];
+    for (let i = 0; i < 16; i++) {
+      data.push(`{"index":${i}}`);
+    }
+    const response = await client.batchSendMessage({
+      queueName: queueName,
+      msgBody: data,
+    });
+    expect(response.code).toBe(0);
   });
 
   const receiptHandles: string[] = [];
@@ -80,18 +74,15 @@ describe('队列消息功能', () => {
         receiptHandles.push(x.receiptHandle);
       }
       done();
-    }, 2000);
+    }, 5000);
   });
 
-  test('批量删除消息', async (done) => {
-    setTimeout(async () => {
-      const response = await client.batchDeleteMessage({
-        queueName: queueName,
-        receiptHandle: receiptHandles,
-      });
-      expect(response.code).toBe(0);
-      done();
-    }, 2000);
+  test('批量删除消息', async () => {
+    const response = await client.batchDeleteMessage({
+      queueName: queueName,
+      receiptHandle: receiptHandles,
+    });
+    expect(response.code).toBe(0);
   });
 
   test('删除队列', async () => {

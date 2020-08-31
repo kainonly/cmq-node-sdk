@@ -1,7 +1,7 @@
 import { client } from './helper';
 
+jest.setTimeout(60 * 1000);
 describe('面向标签的主题消息发布', () => {
-  jest.setTimeout(60 * 1000);
   const topicName = 'Test-' +
     Math.random()
       .toString(32)
@@ -40,7 +40,7 @@ describe('面向标签的主题消息发布', () => {
       });
       expect(response2.code).toBe(0);
       done();
-    }, 3000);
+    }, 5000);
   });
 
   test('发布消息', async (done) => {

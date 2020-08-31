@@ -1,7 +1,7 @@
 import { client } from './helper';
 
+jest.setTimeout(60 * 1000);
 describe('面向路由匹配的主题消息发布', () => {
-  jest.setTimeout(60 * 1000);
   const topicName = 'Test-' +
     Math.random()
       .toString(32)
@@ -15,15 +15,12 @@ describe('面向路由匹配的主题消息发布', () => {
       .toString(32)
       .slice(-8);
 
-  test('创建主题', async (done) => {
-    setTimeout(async () => {
-      const response = await client.createTopic({
-        topicName: topicName,
-        filterType: 2,
-      });
-      expect(response.code).toBe(0);
-      done();
-    }, 2000);
+  test('创建主题', async () => {
+    const response = await client.createTopic({
+      topicName: topicName,
+      filterType: 2,
+    });
+    expect(response.code).toBe(0);
   });
 
   test('订阅主题', async (done) => {
@@ -45,7 +42,7 @@ describe('面向路由匹配的主题消息发布', () => {
       });
       expect(response2.code).toBe(0);
       done();
-    }, 3000);
+    }, 5000);
   });
 
   test('向{*.common|system.common}发布消息', async (done) => {
@@ -69,7 +66,7 @@ describe('面向路由匹配的主题消息发布', () => {
       });
       expect(response.code).toBe(0);
       done();
-    }, 2000);
+    }, 5000);
   });
 
   test('核对消息投递数量', async (done) => {

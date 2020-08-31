@@ -1,7 +1,7 @@
 import { client } from './helper';
 
+jest.setTimeout(60 * 1000);
 describe('主题基础功能', () => {
-  jest.setTimeout(60 * 1000);
   const topicName = 'Test-' +
     Math.random()
       .toString(32)
@@ -29,7 +29,7 @@ describe('主题基础功能', () => {
       });
       expect(response.code).toBe(0);
       done();
-    }, 2000);
+    }, 5000);
   });
 
   test('获取主题属性', async () => {

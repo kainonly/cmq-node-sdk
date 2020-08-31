@@ -1,7 +1,7 @@
 import { clientUseSha1 } from './helper';
 
+jest.setTimeout(60 * 1000);
 describe('队列基础功能', () => {
-  jest.setTimeout(60 * 1000);
   const queueName = 'Test-' +
     Math.random()
       .toString(32)
@@ -28,7 +28,7 @@ describe('队列基础功能', () => {
       });
       expect(response.code).toBe(0);
       done();
-    }, 2000);
+    }, 5000);
   });
 
   test('修改队列属性', async () => {
@@ -39,10 +39,13 @@ describe('队列基础功能', () => {
     expect(response.code).toBe(0);
   });
 
-  test('删除队列', async () => {
-    const response = await clientUseSha1.deleteQueue({
-      queueName: queueName,
-    });
-    expect(response.code).toBe(0);
+  test('删除队列', async (done) => {
+    setTimeout(async () => {
+      const response = await clientUseSha1.deleteQueue({
+        queueName: queueName,
+      });
+      expect(response.code).toBe(0);
+      done();
+    }, 5000);
   });
 });
