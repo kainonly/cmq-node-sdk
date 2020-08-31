@@ -1,7 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Common = void 0;
 const crypto_1 = require("crypto");
 const got_1 = require("got");
+const perf_hooks_1 = require("perf_hooks");
 /**
  * 公共处理类
  */
@@ -45,8 +47,7 @@ class Common {
     getArgs() {
         const args = {};
         const vars = this.options;
-        const keys = Object.keys(this.options).sort();
-        for (const key of keys) {
+        for (const key in vars) {
             if (vars.hasOwnProperty(key)) {
                 if (Array.isArray(vars[key])) {
                     for (const k in vars[key]) {
@@ -68,9 +69,10 @@ class Common {
     getSignParams() {
         const operates = [];
         const args = this.getArgs();
-        for (const key in args) {
+        const keys = Object.keys(args).sort();
+        for (const key of keys) {
             if (args.hasOwnProperty(key)) {
-                operates.push(key + '=' + args[key]);
+                operates.push(key.replace(/\_/g, '.') + '=' + args[key]);
             }
         }
         return this.getSignRequest() + '?' + operates.join('&');
@@ -99,10 +101,9 @@ class Common {
      * 发起请求
      */
     send() {
-        this.options.Nonce = Math.floor(Math.random() * 10000);
-        this.options.Timestamp = Math.floor(new Date().getTime() / 1000);
-        const params = this.getSignParams();
-        this.options.Signature = this.factorySignature(params);
+        this.options.Nonce = Math.random() * 10000 >> 0;
+        this.options.Timestamp = (perf_hooks_1.performance.timeOrigin + perf_hooks_1.performance.now()) / 1000 >> 0;
+        this.options.Signature = this.factorySignature(this.getSignParams());
         const args = this.getArgs();
         let timeout = 10000;
         if (args.pollingWaitSeconds) {

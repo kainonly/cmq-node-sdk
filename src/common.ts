@@ -2,6 +2,7 @@ import { createHmac } from 'crypto';
 import { Instance } from './types/instance';
 import { CommonOptions } from './types/common-options';
 import got, { CancelableRequest } from 'got';
+import { performance } from 'perf_hooks';
 
 /**
  * 公共处理类
@@ -64,8 +65,7 @@ export class Common {
   private getArgs(): any {
     const args: any = {};
     const vars: any = this.options;
-    const keys = Object.keys(this.options).sort();
-    for (const key of keys) {
+    for (const key in vars) {
       if (vars.hasOwnProperty(key)) {
         if (Array.isArray(vars[key])) {
           for (const k in vars[key]) {
@@ -87,9 +87,10 @@ export class Common {
   private getSignParams(): string {
     const operates: string[] = [];
     const args = this.getArgs();
-    for (const key in args) {
+    const keys = Object.keys(args).sort();
+    for (const key of keys) {
       if (args.hasOwnProperty(key)) {
-        operates.push(key + '=' + args[key]);
+        operates.push(key.replace(/\_/g, '.') + '=' + args[key]);
       }
     }
     return this.getSignRequest() + '?' + operates.join('&');
@@ -120,10 +121,9 @@ export class Common {
    * 发起请求
    */
   send(): CancelableRequest<any> {
-    this.options.Nonce = Math.floor(Math.random() * 10000);
-    this.options.Timestamp = Math.floor(new Date().getTime() / 1000);
-    const params = this.getSignParams();
-    this.options.Signature = this.factorySignature(params);
+    this.options.Nonce = Math.random() * 10000 >> 0;
+    this.options.Timestamp = (performance.timeOrigin + performance.now()) / 1000 >> 0;
+    this.options.Signature = this.factorySignature(this.getSignParams());
     const args = this.getArgs();
     let timeout = 10000;
     if (args.pollingWaitSeconds) {
