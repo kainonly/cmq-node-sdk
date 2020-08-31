@@ -29,7 +29,7 @@ describe('主题订阅功能', () => {
       });
       expect(response.code).toBe(0);
       done();
-    }, 10000);
+    }, 5000);
   });
 
   test('获取订阅列表', async () => {
@@ -45,7 +45,7 @@ describe('主题订阅功能', () => {
       const response = await client.setSubscriptionAttributes({
         topicName: topicName,
         subscriptionName: subscriptionName,
-        notifyStrategy: 'BACKOFF_RETRY',
+          notifyStrategy: 'BACKOFF_RETRY',
       });
       expect(response.code).toBe(0);
       done();

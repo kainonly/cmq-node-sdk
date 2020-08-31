@@ -69,10 +69,9 @@ class Common {
         const args = this.getArgs();
         const keys = Object.keys(args).sort();
         for (const key of keys) {
-            operates.push(key + '=' + args[key]);
+            operates.push(key.replace(/\_/g, '.') + '=' + args[key]);
         }
-        const querys = operates.join('&').replace(/\_/g, '.');
-        return this.getSignRequest() + '?' + querys;
+        return this.getSignRequest() + '?' + operates.join('&');
     }
     /**
      * 生成签名
