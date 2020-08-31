@@ -45,7 +45,7 @@ describe('主题消息功能', () => {
   test('批量发布消息', async (done) => {
     setTimeout(async () => {
       const data: string[] = [];
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < 16; i++) {
         data.push(`{"index":${i}}`);
       }
       const response = await client.batchPublishMessage({
