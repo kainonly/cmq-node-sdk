@@ -2,7 +2,6 @@ import { createHmac } from 'crypto';
 import { Instance } from './types/instance';
 import { CommonOptions } from './types/common-options';
 import got, { CancelableRequest } from 'got';
-import { performance } from 'perf_hooks';
 
 /**
  * 公共处理类
@@ -89,11 +88,10 @@ export class Common {
     const args = this.getArgs();
     const keys = Object.keys(args).sort();
     for (const key of keys) {
-      if (args.hasOwnProperty(key)) {
-        operates.push(key.replace(/\_/g, '.') + '=' + args[key]);
-      }
+      operates.push(key + '=' + args[key]);
     }
-    return this.getSignRequest() + '?' + operates.join('&');
+    const querys = operates.join('&').replace(/\_/g, '.');
+    return this.getSignRequest() + '?' + querys;
   }
 
   /**
@@ -121,8 +119,8 @@ export class Common {
    * 发起请求
    */
   send(): CancelableRequest<any> {
-    this.options.Nonce = Math.random() * 10000 >> 0;
-    this.options.Timestamp = (performance.timeOrigin + performance.now()) / 1000 >> 0;
+    this.options.Nonce = Math.floor(Math.random() * 10000);
+    this.options.Timestamp = Math.floor(new Date().getTime() / 1000);
     this.options.Signature = this.factorySignature(this.getSignParams());
     const args = this.getArgs();
     let timeout = 10000;

@@ -1,7 +1,7 @@
 import { client } from './helper';
 
+jest.setTimeout(60 * 1000);
 describe('队列消息回溯功能', () => {
-  jest.setTimeout(60 * 1000);
   const queueName = 'Test-' +
     Math.random()
       .toString(32)
@@ -39,7 +39,7 @@ describe('队列消息回溯功能', () => {
       });
       expect(response.code).toBe(0);
       done();
-    }, 2000);
+    }, 5000);
   });
 
   test('回溯消息', async (done) => {
@@ -51,7 +51,7 @@ describe('队列消息回溯功能', () => {
       });
       expect(response.code).toBe(0);
       done();
-    }, 20000);
+    }, 15000);
   });
 
   test('删除队列', async () => {

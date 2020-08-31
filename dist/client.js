@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Client = void 0;
 const common_1 = require("./common");
 /**
  * 客户端类

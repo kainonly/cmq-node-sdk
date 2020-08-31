@@ -1,7 +1,7 @@
 import { client } from './helper';
 
+jest.setTimeout(60 * 1000);
 describe('主题消息功能', () => {
-  jest.setTimeout(60 * 1000);
   const topicName = 'Test-' +
     Math.random()
       .toString(32)
@@ -28,7 +28,7 @@ describe('主题消息功能', () => {
       });
       expect(response.code).toBe(0);
       done();
-    }, 3000);
+    }, 5000);
   });
 
   test('发布消息', async (done) => {
@@ -42,19 +42,16 @@ describe('主题消息功能', () => {
     }, 5000);
   });
 
-  test('批量发布消息', async (done) => {
-    setTimeout(async () => {
-      const data: string[] = [];
-      for (let i = 0; i < 16; i++) {
-        data.push(`{"index":${i}}`);
-      }
-      const response = await client.batchPublishMessage({
-        topicName: topicName,
-        msgBody: data,
-      });
-      expect(response.code).toBe(0);
-      done();
-    }, 5000);
+  test('批量发布消息', async () => {
+    const data: string[] = [];
+    for (let i = 0; i < 16; i++) {
+      data.push(`{"index":${i}}`);
+    }
+    const response = await client.batchPublishMessage({
+      topicName: topicName,
+      msgBody: data,
+    });
+    expect(response.code).toBe(0);
   });
 
   test('取消订阅', async () => {
