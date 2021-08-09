@@ -16,12 +16,10 @@ CMQ 消息队列 NODE SDK
 npm install cmq-sdk --save
 ```
 
-## 快速开始
-
 创建客户端
 
 ```typescript
-import {CMQ} from 'cmq-sdk';
+import { CMQ } from 'cmq-sdk';
 
 const cmq = CMQ.NEW({
     path: '/v2/index.php',
@@ -31,19 +29,6 @@ const cmq = CMQ.NEW({
     secretKey: '<secretKey>',
     region: 'gz'
 });
-
-// If Javascript
-//
-// const { CMQ } = require('cmq-sdk');
-// 
-// const client = CMQ.NEW({
-//   path: '/v2/index.php',
-//   signatureMethod: 'HmacSHA256',
-//   extranet: true,
-//   secretId: '<secretId>',
-//   secretKey: '<secretKey>',
-//   region: 'gz',
-// });
 ```
 
 - **path** `string` 云 API 的请求固定路径，当前固定为 `/v2/index.php`
@@ -51,9 +36,7 @@ const cmq = CMQ.NEW({
 - **extranet** `boolean` 是否为公网，用来决定请求地址
 - **secretId** `string`  云API密钥 SecretId
 - **secretKey** `string`  云API密钥 SecretKey
-- **region** `string` 地域参数
-
-> gz（广州），sh（上海），bj（北京），shjr（上海金融），szjr（深圳金融），hk（香港），cd（成都），ca(北美)，usw（美西），sg（新加坡）
+- **region** `string` 地域参数，例如：`gz`（广州）、`sh`（上海）... 
 
 创建好客户端即可操作使用，例如：创建一个 `test` 队列
 
@@ -73,6 +56,4 @@ try{
     // error
 }
 ```
-
-> 详细文档请查看[cmq.kainonly.com](https://cmq.kainonly.com)，关于 cmq 介绍请查看官网 [接口文档](https://cloud.tencent.com/document/api/406/5852)
 
