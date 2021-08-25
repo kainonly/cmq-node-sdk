@@ -41,13 +41,24 @@ export class Common {
     options.SignatureMethod = instance.signatureMethod;
     options.SecretId = instance.secretId;
     options.Region = instance.region;
-    if (instance.extranet) {
+
+    // 指定了 endpoint 优先用指定的
+    if (instance.useTDMQ) {
+      if (instance.extranet) {
+        this.protocol = 'https://';
+        this.uri = `cmq-${options.Region}.public.tencenttdmq.com`;
+      } else {
+        this.protocol = 'http://';
+        this.uri = `${options.Region}.mqadapter.cmq.tencentyun.com`;
+      }
+    } else if (instance.extranet) {
       this.protocol = 'https://';
       this.uri = `cmq-${type}-${options.Region}.api.qcloud.com`;
     } else {
       this.protocol = 'http://';
       this.uri = `cmq-${type}-${options.Region}.api.tencentyun.com`;
     }
+
     this.path = instance.path;
   }
 
