@@ -113,7 +113,7 @@ class Common {
         this.options.Timestamp = Math.floor(new Date().getTime() / 1000);
         this.options.Signature = this.factorySignature(this.getSignParams());
         const args = this.getArgs();
-        let timeout = 10000;
+        let timeout = 20000;
         if (args.pollingWaitSeconds) {
             timeout = args.pollingWaitSeconds * 1000 + 1000;
         }
