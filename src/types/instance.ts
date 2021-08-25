@@ -31,4 +31,9 @@ export interface Instance {
    * 区域
    */
   region: string;
+
+  /**
+   * 使用 TDMQ 版 CMQ
+   */
+  useTDMQ?: boolean
 }
