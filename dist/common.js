@@ -29,10 +29,16 @@ class Common {
             if (instance.extranet) {
                 this.protocol = 'https://';
                 this.uri = `cmq-${options.Region}.public.tencenttdmq.com`;
+                if (instance.smallCluster) {
+                    this.uri = this.uri + ':8443';
+                }
             }
             else {
                 this.protocol = 'http://';
                 this.uri = `${options.Region}.mqadapter.cmq.tencentyun.com`;
+                if (instance.smallCluster) {
+                    this.uri = this.uri + ':8080';
+                }
             }
         }
         else if (instance.extranet) {
