@@ -30,4 +30,8 @@ export interface Instance {
      * 使用 TDMQ 版 CMQ
      */
     useTDMQ?: boolean;
+    /**
+     * 使用小集群(端口:公网8443/内网8080)
+     */
+    smallCluster?: boolean;
 }
