@@ -1,6 +1,6 @@
 {
   "name": "cmq-sdk",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "scripts": {
     "start": "docsify serve docs",
     "build": "rimraf dist && gulp",
