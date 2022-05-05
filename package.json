@@ -1,41 +1,42 @@
 {
   "name": "cmq-sdk",
-  "version": "2.2.2",
+  "version": "3.0.0-beta",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "docsify serve docs",
-    "build": "rimraf dist && gulp",
-    "test": "jest --coverage --coverageReporters=text-lcov | coveralls",
-    "release": "npm run build && npm publish"
+    "build": "tsc --build --clean && tsc",
+    "test": "jest"
   },
-  "main": "dist/cmq.js",
   "dependencies": {
-    "got": "^10.7.0"
+    "axios": "^0.27.2"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.23",
+    "@types/jest": "^27.5.0",
+    "@typescript-eslint/eslint-plugin": "^5.22.0",
+    "@typescript-eslint/parser": "^5.22.0",
     "coveralls": "^3.0.9",
-    "gulp": "^4.0.1",
-    "gulp-typescript": "^6.0.0-alpha.1",
-    "jest": "^24.9.0",
-    "prettier": "1.19.1",
-    "rimraf": "^3.0.0",
-    "ts-jest": "^24.2.0",
-    "ts-node": "^8.1.0",
-    "typescript": "^3.4.5"
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "jest": "^28.0.0",
+    "prettier": "^2.6.2",
+    "ts-jest": "^28.0.0",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4"
   },
+  "files": [
+    "dist"
+  ],
   "engines": {
-    "node": ">= 8.0.0"
+    "node": ">= 12.0.0"
   },
   "keywords": [
-    "Tencent",
     "CMQ",
-    "message queue"
+    "TDMQ CMQ"
   ],
   "author": {
     "name": "kain",
     "email": "zhangtqx@vip.qq.com"
   },
-  "homepage": "https://cmq.kainonly.com",
+  "homepage": "https://www.yuque.com/kainonly/cmq",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kainonly/cmq-node-sdk.git"

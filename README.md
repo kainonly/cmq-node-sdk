@@ -13,47 +13,5 @@ CMQ 消息队列 NODE SDK
 ## 安装
 
 ```shell
-npm install cmq-sdk --save
+npm install cmq-sdk
 ```
-
-创建客户端
-
-```typescript
-import { CMQ } from 'cmq-sdk';
-
-const cmq = CMQ.NEW({
-    path: '/v2/index.php',
-    signatureMethod: 'HmacSHA256',
-    extranet: true,
-    secretId: '<secretId>',
-    secretKey: '<secretKey>',
-    region: 'gz'
-});
-```
-
-- **path** `string` 云 API 的请求固定路径，当前固定为 `/v2/index.php`
-- **signatureMethod** `string` 加密方式，目前支持 `HmacSHA256` 和 `HmacSHA1`
-- **extranet** `boolean` 是否为公网，用来决定请求地址
-- **secretId** `string`  云API密钥 SecretId
-- **secretKey** `string`  云API密钥 SecretKey
-- **region** `string` 地域参数，例如：`gz`（广州）、`sh`（上海）... 
-
-创建好客户端即可操作使用，例如：创建一个 `test` 队列
-
-```typescript
-client.createQueue({
-    queueName: 'test'
-}).then(response => {
-    // response
-});
-
-// Or use async/await
-try{
-    const response = await client.createQueue({
-        queueName: 'test'
-    });
-} catch (e) {
-    // error
-}
-```
-
