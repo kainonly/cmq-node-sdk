@@ -1,0 +1,31 @@
+name: NPM 包发布
+
+on:
+  release:
+    types: [ published ]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出
+        uses: actions/checkout@v2
+
+      - name: 安装 Node
+        uses: actions/setup-node@v2
+        with:
+          registry-url: https://registry.npmjs.org
+
+      - name: 安装依赖
+        run: npm install
+
+      - name: 构建库
+        run: |
+          npm run build
+
+      - name: 发布至 NPM
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        run: |
+          npm version ${{github.ref_name}}
+          npm publish
