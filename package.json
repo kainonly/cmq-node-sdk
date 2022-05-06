@@ -36,5 +36,12 @@
     "name": "kain",
     "email": "zhangtqx@vip.qq.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kainonly/cmq-node-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kainonly/cmq-node-sdk/issues"
+  },
   "license": "MIT"
 }
