@@ -26,5 +26,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         run: |
-          npm version ${{github.ref_name}} -f
+          cp package.json ./dist
+          cd ./dist
+          npm version ${{github.ref_name}}
           npm publish
