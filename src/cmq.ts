@@ -10,7 +10,7 @@ import {
   BatchSendMessageResult,
   DeleteMessageDto,
   Dto,
-  Options,
+  Option,
   PublishMessageDto,
   PublishMessageResult,
   ReceiveMessageDto,
@@ -20,6 +20,8 @@ import {
   SendMessageResult
 } from './types';
 import axios, { AxiosRequestConfig } from 'axios';
+import { tdmq } from 'tencentcloud-sdk-nodejs';
+import { Client } from 'tencentcloud-sdk-nodejs/tencentcloud/services/tdmq/v20200217/tdmq_client';
 
 export class CMQ {
   /**
@@ -31,12 +33,32 @@ export class CMQ {
    */
   private readonly path: string;
 
-  constructor(private options: Options) {
-    if (!options.protocol) {
+  /**
+   * 云 API
+   * 控制流支持方式
+   */
+  api?: Client;
+
+  constructor(private option: Option) {
+    if (!option.protocol) {
       this.protocol = 'https://';
     }
-    if (!options.path) {
+    if (!option.path) {
       this.path = '/v2/index.php';
+    }
+    if (option.api) {
+      this.api = new tdmq.v20200217.Client({
+        credential: {
+          secretId: option.secretId,
+          secretKey: option.secretKey
+        },
+        region: option.api.region,
+        profile: {
+          httpProfile: {
+            endpoint: option.api.endpoint
+          }
+        }
+      });
     }
   }
 
@@ -45,16 +67,16 @@ export class CMQ {
    */
   send<T, R>(data: T & Dto, config?: AxiosRequestConfig): Promise<R> {
     data.SignatureMethod = 'HmacSHA256';
-    data.SecretId = this.options.secretId;
-    data.Region = this.options.region;
+    data.SecretId = this.option.secretId;
+    data.Region = this.option.region;
     data.Nonce = Math.trunc(Math.random() * 10000);
     data.Timestamp = Math.trunc(new Date().getTime() / 1000);
     const params: string[] = [];
     for (const key of Object.keys(data).sort()) {
       params.push(`${key.replace(/_/g, '.')}=${Reflect.get(data, key)}`);
     }
-    data.Signature = createHmac('sha256', this.options.secretKey)
-      .update(`POST${this.options.host}${this.path}?${params.join('&')}`)
+    data.Signature = createHmac('sha256', this.option.secretKey)
+      .update(`POST${this.option.host}${this.path}?${params.join('&')}`)
       .digest('base64');
     const payload = new URLSearchParams();
     for (const [key, value] of Object.entries(data)) {
@@ -67,7 +89,7 @@ export class CMQ {
       }
     }
     return axios
-      .post<R>(this.protocol + this.options.host + this.path, payload, {
+      .post<R>(this.protocol + this.option.host + this.path, payload, {
         timeout: 30000,
         ...config
       })

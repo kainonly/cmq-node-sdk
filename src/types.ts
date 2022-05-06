@@ -1,4 +1,4 @@
-export interface Options {
+export interface Option {
   /**
    * 协议
    */
@@ -26,6 +26,16 @@ export interface Options {
   /**
    * 区域
    */
+  region: string;
+
+  /**
+   * 使用云 API
+   */
+  api?: APIOption;
+}
+
+export interface APIOption {
+  endpoint: string;
   region: string;
 }
 
