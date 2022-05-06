@@ -1,10 +1,10 @@
 {
   "name": "cmq-sdk",
-  "main": "dist/index.js",
   "scripts": {
     "build": "tsc --build --clean && tsc",
     "test": "jest"
   },
+  "main": "dist/index.js",
   "dependencies": {
     "axios": "^0.27.2",
     "tencentcloud-sdk-nodejs": "^4.0.0"
@@ -26,9 +26,6 @@
   "files": [
     "dist"
   ],
-  "engines": {
-    "node": ">= 12.0.0"
-  },
   "keywords": [
     "CMQ",
     "TDMQ CMQ"
@@ -36,14 +33,6 @@
   "author": {
     "name": "kain",
     "email": "zhangtqx@vip.qq.com"
-  },
-  "homepage": "https://www.yuque.com/kainonly/cmq",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kainonly/cmq-node-sdk.git"
-  },
-  "bugs": {
-    "url": "https://github.com/kainonly/cmq-node-sdk/issues"
   },
   "license": "MIT"
 }
