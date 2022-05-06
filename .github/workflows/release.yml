@@ -21,12 +21,11 @@ jobs:
         run: npm install
 
       - name: 构建库
-        run: |
-          npm run build
+        run: npm run build
 
       - name: 发布至 NPM
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         run: |
           npm version ${{github.ref_name}}
-          npm publish
+          npm publish --access=public
