@@ -27,11 +27,11 @@ export class CMQ {
   /**
    * 请求协议
    */
-  private readonly protocol: string;
+  private protocol: string;
   /**
    * 请求固定路径
    */
-  private readonly path: string;
+  private path: string;
 
   /**
    * 云 API
@@ -40,12 +40,10 @@ export class CMQ {
   api?: Client;
 
   constructor(private option: Option) {
-    if (!option.protocol) {
-      this.protocol = 'https://';
-    }
-    if (!option.path) {
-      this.path = '/v2/index.php';
-    }
+
+    this.protocol = option.protocol ?? 'https://';
+    this.path = option.path ?? '/v2/index.php';
+
     if (option.api) {
       this.api = new tdmq.v20200217.Client({
         credential: {

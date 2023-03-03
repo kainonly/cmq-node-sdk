@@ -4,9 +4,11 @@ import faker from '@faker-js/faker';
 
 describe('HTTP 数据流测试', () => {
   const client: CMQ = new CMQ({
+    protocol: env.PROTOCOL ?? 'https://',
+    path: env.PATH ?? '/v2/index.php',
     host: env.HOST ?? 'cmq-gz.public.tencenttdmq.com',
-    secretId: env.SECRETID,
-    secretKey: env.SECRETKEY,
+    secretId: env.SECRETID ?? '',
+    secretKey: env.SECRETKEY ?? '',
     region: env.REGION ?? 'gz',
     api: {
       region: env.API_REGION ?? 'ap-guangzhou',
