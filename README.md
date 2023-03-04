@@ -2,8 +2,9 @@
 
 CMQ 消息队列 NODE SDK
 
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/kainonly/cmq-node-sdk/release.yml?label=release)]()
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/kainonly/cmq-node-sdk/testing.yml?label=test)]()[![Coveralls github](https://img.shields.io/coveralls/github/kainonly/cmq-node-sdk.svg?style=flat-square)](https://coveralls.io/github/kainonly/cmq-node-sdk)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/kainonly/cmq-node-sdk/release.yml?label=release)](https://github.com/kainonly/cmq-node-sdk/actions/workflows/release.yml)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/kainonly/cmq-node-sdk/testing.yml?label=test)](https://github.com/kainonly/cmq-node-sdk/actions/workflows/testing.yml)
+[![Coveralls github](https://img.shields.io/coveralls/github/kainonly/cmq-node-sdk.svg?style=flat-square)](https://coveralls.io/github/kainonly/cmq-node-sdk)
 [![npm](https://img.shields.io/npm/v/cmq-sdk.svg?style=flat-square)](https://www.npmjs.com/package/cmq-sdk)
 [![Downloads](https://img.shields.io/npm/dm/cmq-sdk.svg?style=flat-square)](https://www.npmjs.com/package/cmq-sdk)
 [![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-blue.svg?style=flat-square)](https://www.typescriptlang.org/)
@@ -23,6 +24,8 @@ npm install cmq-sdk
 import { CMQ } from 'cmq-sdk';
 
 const client = new CMQ({
+  // protocol: 'https://',
+  // path: '/v2/index.php',
   host: 'cmq-gz.public.tencenttdmq.com',
   secretId: '<访问密钥 Id>',
   secretKey: '<访问密钥 Key>',
