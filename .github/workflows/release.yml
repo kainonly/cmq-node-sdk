@@ -9,12 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 检出
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 安装 Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '14'
+          node-version: 'latest'
           registry-url: https://registry.npmjs.org
 
       - name: 构建库
